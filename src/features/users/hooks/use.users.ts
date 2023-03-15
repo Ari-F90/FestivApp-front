@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../core/store/store";
-import { ProtoUser } from "../models/user";
-import * as ac from "../reducer/users.actions.creator";
+import { User } from "../models/user";
+
+import { login, register } from "../reducer/users.slice";
 import { UserApiRepo } from "../services/user.api.repo";
 
 export function useUsers(repo: UserApiRepo) {
@@ -9,19 +10,19 @@ export function useUsers(repo: UserApiRepo) {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const registerUser = async (info: ProtoUser) => {
+  const registerUser = async (info: Partial<User>) => {
     try {
       const newUser = await repo.register(info);
-      dispatch(ac.addCreator(newUser.results[0]));
+      dispatch(register(newUser.results[0]));
     } catch (error) {
       console.log((error as Error).message);
     }
   };
 
-  const loginUser = async (info: ProtoUser) => {
+  const loginUser = async (info: Partial<User>) => {
     try {
       const newUser = await repo.login(info);
-      dispatch(ac.addCreator(newUser.results[0]));
+      dispatch(login(newUser.results[0]));
     } catch (error) {
       console.log((error as Error).message);
     }
