@@ -1,4 +1,3 @@
-import { PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../models/user";
 import { userReducer, State } from "../reducer/users.slice";
 
