@@ -1,11 +1,11 @@
 import { userReducer } from "./users.reducer";
-import * as ac from "../reducer/users.actions.creator";
+import * as ac from "./users.actions.creator";
 import { User } from "../models/user";
 import {
   addCreator,
   loadCreator,
   updateCreator,
-} from "../reducer/users.actions.creator";
+} from "./users.actions.creator";
 
 describe("Given the userReducer", () => {
   const mockUser1 = {

@@ -16,3 +16,7 @@ export type User = {
   surname: string;
   favoriteFestival: Festival[];
 };
+
+export type ServerResp = {
+  results: User[];
+};
