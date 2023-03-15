@@ -1,12 +1,12 @@
-import { ProtoUser, ServerResp } from "../models/user";
+import { ServerResp, User } from "../models/user";
 
 export class UserApiRepo {
   url: string;
   constructor() {
-    this.url = "https://final-project-festivapp.onrender.com/users";
+    this.url = "http://localhost:5000/users";
   }
 
-  async register(user: ProtoUser): Promise<ServerResp> {
+  async register(user: Partial<User>): Promise<ServerResp> {
     const resp = await fetch(this.url + "/register", {
       method: "POST",
       body: JSON.stringify(user),
@@ -20,7 +20,7 @@ export class UserApiRepo {
     return data;
   }
 
-  async login(user: ProtoUser): Promise<ServerResp> {
+  async login(user: Partial<User>): Promise<ServerResp> {
     const resp = await fetch(this.url + "/login", {
       method: "POST",
       body: JSON.stringify(user),
