@@ -1,4 +1,4 @@
-import { ProtoUser, ServerResp, User } from "../models/user";
+import { ProtoUser, ServerResp } from "../models/user";
 
 export class UserApiRepo {
   url: string;
