@@ -1,4 +1,4 @@
-import { User } from "../../users/entities/user";
+import { User } from "../../users/models/user";
 
 export type ProtoFestival = {
   name: string;

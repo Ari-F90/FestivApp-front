@@ -1,4 +1,4 @@
-import { Festival } from "../../festivals/entities/festival";
+import { Festival } from "../../festivals/models/festival";
 
 export type ProtoUser = {
   email: string;

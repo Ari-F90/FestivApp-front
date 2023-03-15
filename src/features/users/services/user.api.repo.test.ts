@@ -1,4 +1,4 @@
-import { ProtoUser, User } from "../entities/user";
+import { ProtoUser, User } from "../models/user";
 import { UserApiRepo } from "./user.api.repo";
 
 let mockRepo: UserApiRepo;
