@@ -1,4 +1,4 @@
-import { ProtoUser, User } from "../models/user";
+import { ProtoUser, ServerResp, User } from "../models/user";
 
 export class UserApiRepo {
   url: string;
@@ -6,7 +6,7 @@ export class UserApiRepo {
     this.url = "https://final-project-festivapp.onrender.com/users";
   }
 
-  async register(user: ProtoUser): Promise<User> {
+  async register(user: ProtoUser): Promise<ServerResp> {
     const resp = await fetch(this.url + "/register", {
       method: "POST",
       body: JSON.stringify(user),
@@ -16,11 +16,11 @@ export class UserApiRepo {
     });
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as User;
+    const data = await resp.json();
     return data;
   }
 
-  async login(user: ProtoUser): Promise<User> {
+  async login(user: ProtoUser): Promise<ServerResp> {
     const resp = await fetch(this.url + "/login", {
       method: "POST",
       body: JSON.stringify(user),
@@ -30,7 +30,7 @@ export class UserApiRepo {
     });
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as User;
+    const data = await resp.json();
     return data;
   }
 }

@@ -15,15 +15,14 @@ describe("Given the UserApiRepo", () => {
         ok: true,
         json: jest.fn().mockResolvedValue(mockUser),
       });
-      const registeredUser: User = await mockRepo.register(mockUser);
-      expect(registeredUser.email).toBe(mockUser.email);
+      await mockRepo.register(mockUser);
       expect(fetch).toHaveBeenCalled();
     });
 
     test("Then it should throw an error if the registration request fails", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: false,
-        json: jest.fn().mockResolvedValue(mockUser),
+        json: jest.fn().mockResolvedValue(undefined),
       });
       await expect(mockRepo.register(mockUser)).rejects.toThrow();
       expect(fetch).toHaveBeenCalled();
@@ -41,15 +40,14 @@ describe("When we use the login function", () => {
       ok: true,
       json: jest.fn().mockResolvedValue(mockUser),
     });
-    const loggedUser: User = await mockRepo.login(mockUser);
-    expect(loggedUser.email).toBe(loggedUser.email);
+    await mockRepo.login(mockUser);
     expect(fetch).toHaveBeenCalled();
   });
 
   test("Then it should throw an error if the login request fails", async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: false,
-      json: jest.fn().mockResolvedValue(mockUser),
+      json: jest.fn().mockResolvedValue(undefined),
     });
     await expect(mockRepo.login(mockUser)).rejects.toThrow();
     expect(fetch).toHaveBeenCalled();
