@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import App from "./app";
-import { store } from "../store/store.js";
+import { store } from "../store/store";
 
 describe("Given the app component", () => {
   describe("When it is rendered", () => {
