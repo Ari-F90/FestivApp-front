@@ -3,7 +3,7 @@ import { useUsers } from "../../../features/users/hooks/use.users";
 import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 import { User } from "../../../features/users/models/user";
 
-export function Register() {
+export default function Register() {
   const repo = useMemo(() => new UserApiRepo(), []);
   const { registerUser } = useUsers(repo);
 
