@@ -2,8 +2,8 @@ import { SyntheticEvent, useMemo } from "react";
 import { useUsers } from "../../../features/users/hooks/use.users";
 import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 import { User } from "../../../features/users/models/user";
-
-export function Register() {
+import styles from "./register.module.scss";
+export default function Register() {
   const repo = useMemo(() => new UserApiRepo(), []);
   const { registerUser } = useUsers(repo);
 
@@ -48,7 +48,9 @@ export function Register() {
           required
           placeholder="Surname"
         />
-        <button type="submit">REGISTER</button>
+        <button className={styles.buttonregister} type="submit">
+          REGISTER
+        </button>
       </form>
     </div>
   );

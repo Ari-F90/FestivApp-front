@@ -2,9 +2,9 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
-import { Login } from "../login/login";
+import Login from "./login";
 
-describe("Given the  component", () => {
+describe("Given the Login component", () => {
   let elements: HTMLElement[];
   beforeEach(async () => {
     // eslint-disable-next-line testing-library/no-render-in-setup

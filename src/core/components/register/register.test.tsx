@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
-import { Register } from "../register/register";
+import Register from "./register";
 
 describe("Given the Register component", () => {
   let elements: HTMLElement[];
