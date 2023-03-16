@@ -1,22 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import { MenuOption } from "../menu/menu";
+import { MenuOption, menuOptions } from "../menu/menu";
 
 const HomePage = lazy(() => import("../pages/home-page/home-page"));
 const RegisterPage = lazy(() => import("../../components/register/register"));
 const LoginPage = lazy(() => import("../../components/login/login"));
-
-export type AppRouterProps = {
-  menuOptions: MenuOption[];
-  routesOptions: MenuOption[];
-};
 
 export const routesOptions: MenuOption[] = [
   { label: "Register", path: "/register" },
   { label: "Login", path: "/login" },
 ];
 
-export function AppRouter({ menuOptions, routesOptions }: AppRouterProps) {
+export function AppRouter() {
   return (
     <Suspense>
       <Routes>

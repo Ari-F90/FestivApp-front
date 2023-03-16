@@ -1,101 +1,50 @@
-import { render, screen } from "@testing-library/react";
-import { AppRouter } from "./app.router";
+/* eslint-disable testing-library/no-wait-for-side-effects */
 import { MemoryRouter as Router } from "react-router-dom";
-import { MenuOption } from "../menu/menu";
-import { store } from "../../store/store";
+import { render, screen, waitFor } from "@testing-library/react";
+import { AppRouter } from "./app.router";
+import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
-
-const mockOptions: MenuOption[] = [
-  {
-    label: "Home",
-    path: "/home",
-  },
-];
-
-const mockRoutesOptions: MenuOption[] = [
-  {
-    label: "Register",
-    path: "/register",
-  },
-  {
-    label: "Login",
-    path: "/login",
-  },
-];
+import { store } from "../../store/store";
 
 describe("Given AppRouter", () => {
-  describe("When the route is home", () => {
-    test("Then we should navigate to home", async () => {
-      render(
-        <Provider store={store}>
-          <Router initialEntries={["/home"]} initialIndex={0}>
-            <AppRouter
-              menuOptions={mockOptions}
-              routesOptions={mockRoutesOptions}
-            ></AppRouter>
-          </Router>
-        </Provider>
-      );
-      const element = await screen.findByRole("heading");
-      expect(element).toBeInTheDocument();
-    });
-  });
-  /* describe("When the route is about", () => {
-    test("Then we should navigate to about", async () => {
-      render(
-        <Router initialEntries={["/about", "/otra"]} initialIndex={0}>
-          <AppRouter
-            menuOptions={mockOptions}
-            routesOptions={mockRoutesOptions}
-          ></AppRouter>
+  const renderAppRouter = (number: number) => {
+    render(
+      <Provider store={store}>
+        <Router
+          initialEntries={["/home", "/register", "/login"]}
+          initialIndex={number}
+        >
+          <AppRouter></AppRouter>
         </Router>
-      );
-      const element = await screen.findByText(/Welcome/i);
+      </Provider>
+    );
+  };
+  describe("When rendering and the path is '/home'", () => {
+    test("Then, the title 'Find your plan.Get ready' should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(0));
+      const element = await screen.findByRole("heading", {
+        name: "Find your plan. Get ready",
+      });
       expect(element).toBeInTheDocument();
     });
   });
-  describe("When the route is festivals", () => {
-    test("Then we should navigate to festivals", async () => {
-      render(
-        <Router initialEntries={["/festivals", "/otra"]} initialIndex={0}>
-          <AppRouter
-            menuOptions={mockOptions}
-            routesOptions={mockRoutesOptions}
-          ></AppRouter>
-        </Router>
-      );
-      const element = await screen.findByText(/Festivals/i);
-      expect(element).toBeInTheDocument();
-    });*/
-  describe("When the route is register page", () => {
-    test("Then we should navigate to register", async () => {
-      render(
-        <Provider store={store}>
-          <Router initialEntries={["/register"]} initialIndex={0}>
-            <AppRouter
-              menuOptions={mockOptions}
-              routesOptions={mockRoutesOptions}
-            ></AppRouter>
-          </Router>
-        </Provider>
-      );
-      const element = await screen.findByRole("heading");
+
+  describe("When rendering and the path is '/register'", () => {
+    test("Then, the title 'register' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(1));
+      const element = await screen.findByRole("heading", {
+        name: "Register",
+      });
       expect(element).toBeInTheDocument();
     });
   });
-  describe("When the route is login page", () => {
-    test("Then we should navigate to login", async () => {
-      render(
-        <Provider store={store}>
-          <Router initialEntries={["/login"]} initialIndex={1}>
-            <AppRouter
-              menuOptions={mockOptions}
-              routesOptions={mockRoutesOptions}
-            ></AppRouter>
-          </Router>
-        </Provider>
-      );
-      const element = await screen.findByRole("heading");
+
+  describe("When rendering and the path is '/login'", () => {
+    test("Then, the title 'Login' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(2));
+      const element = await screen.findByRole("heading", {
+        name: "Login",
+      });
       expect(element).toBeInTheDocument();
     });
   });
