@@ -1,4 +1,4 @@
-import { AppRouter, routesOptions } from "../components/app.router/app.router";
+import { AppRouter } from "../components/app.router/app.router";
 import { Header } from "../components/header/header";
 import { Menu, menuOptions } from "../components/menu/menu";
 
@@ -8,10 +8,7 @@ function App() {
       <Header>
         <Menu options={menuOptions}></Menu>
       </Header>
-      <AppRouter
-        menuOptions={menuOptions}
-        routesOptions={routesOptions}
-      ></AppRouter>
+      <AppRouter></AppRouter>
     </div>
   );
 }
