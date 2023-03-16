@@ -9,7 +9,9 @@ describe("Given Header component", () => {
       render(
         <>
           <Provider store={store}>
-            <Header></Header>
+            <Header>
+              <></>
+            </Header>
           </Provider>
         </>
       );
