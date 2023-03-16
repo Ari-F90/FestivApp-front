@@ -1,7 +1,6 @@
 import { MemoryRouter as Router } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
-import { Menu } from "./menu";
-import { MenuOption } from "./menu";
+import { Menu, MenuOption } from "./menu";
 
 describe("Given Menu component", () => {
   describe("When it is rendered", () => {
