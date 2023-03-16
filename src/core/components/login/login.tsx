@@ -2,8 +2,8 @@ import { SyntheticEvent, useMemo } from "react";
 import { useUsers } from "../../../features/users/hooks/use.users";
 import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 import { User } from "../../../features/users/models/user";
-
-export function Login() {
+import styles from "./login.module.scss";
+export default function Login() {
   const repo = useMemo(() => new UserApiRepo(), []);
   const { loginUser } = useUsers(repo);
 
@@ -39,7 +39,9 @@ export function Login() {
           placeholder="Password"
         />
 
-        <button type="submit">LOGIN</button>
+        <button className={styles.buttonlogin} type="submit">
+          LOGIN
+        </button>
       </form>
     </div>
   );
