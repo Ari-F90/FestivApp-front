@@ -25,12 +25,7 @@ export function AppRouter() {
           path={menuOptions[1].path}
           element={<AboutPage></AboutPage>}
         ></Route>
-        {/*<Route
-          path={menuOptions[2].path}
-          element={<Characters></Characters>}
-        ></Route>
 
-        {<Route path={menuOptions[2].path} element={<Favorites></Favorites>}></Route> */}
         <Route
           path={routesOptions[0].path}
           element={<RegisterPage></RegisterPage>}
