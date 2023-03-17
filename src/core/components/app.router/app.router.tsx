@@ -3,6 +3,7 @@ import { Suspense, lazy } from "react";
 import { MenuOption, menuOptions } from "../menu/menu";
 
 const HomePage = lazy(() => import("../pages/home-page/home-page"));
+const AboutPage = lazy(() => import("../pages/about-page/about-page"));
 const RegisterPage = lazy(() => import("../../components/register/register"));
 const LoginPage = lazy(() => import("../../components/login/login"));
 
@@ -20,13 +21,11 @@ export function AppRouter() {
           path={menuOptions[0].path}
           element={<HomePage></HomePage>}
         ></Route>
-        {/*<Route path={menuOptions[1].path} element={<About></About>}></Route>}
         <Route
-          path={menuOptions[2].path}
-          element={<Characters></Characters>}
+          path={menuOptions[1].path}
+          element={<AboutPage></AboutPage>}
         ></Route>
 
-        {<Route path={menuOptions[2].path} element={<Favorites></Favorites>}></Route> */}
         <Route
           path={routesOptions[0].path}
           element={<RegisterPage></RegisterPage>}

@@ -11,7 +11,7 @@ describe("Given AppRouter", () => {
     render(
       <Provider store={store}>
         <Router
-          initialEntries={["/home", "/register", "/login"]}
+          initialEntries={["/home", "/about", "/register", "/login"]}
           initialIndex={number}
         >
           <AppRouter></AppRouter>
@@ -29,9 +29,19 @@ describe("Given AppRouter", () => {
     });
   });
 
+  describe("When rendering and the path is '/about'", () => {
+    test("Then, the title 'About us' should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(1));
+      const element = await screen.findByRole("heading", {
+        name: "About us",
+      });
+      expect(element).toBeInTheDocument();
+    });
+  });
+
   describe("When rendering and the path is '/register'", () => {
     test("Then, the title 'register' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(1));
+      await waitFor(async () => renderAppRouter(2));
       const element = await screen.findByRole("heading", {
         name: "Register",
       });
@@ -41,7 +51,7 @@ describe("Given AppRouter", () => {
 
   describe("When rendering and the path is '/login'", () => {
     test("Then, the title 'Login' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(2));
+      await waitFor(async () => renderAppRouter(3));
       const element = await screen.findByRole("heading", {
         name: "Login",
       });
