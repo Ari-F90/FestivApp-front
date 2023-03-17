@@ -16,5 +16,5 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "../front-final/src/login-page"]
+  "include": ["src", "src/core/components/pages/login-page"]
 }
