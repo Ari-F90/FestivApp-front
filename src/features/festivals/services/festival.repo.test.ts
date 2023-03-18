@@ -17,14 +17,14 @@ describe("Given the festival repo", () => {
     });
   });
 
-  describe("When it calls the method getFestival", () => {
+  describe("When it calls the method loadOneFestival", () => {
     test("Then it should return the value of one festival", async () => {
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
         json: jest.fn().mockResolvedValue({ id: "1", name: "festival1" }),
       });
 
-      const getOneFestival = await mockFestivalRepo.getFestival("1");
+      const getOneFestival = await mockFestivalRepo.loadOneFestival("1");
       expect(getOneFestival).toEqual({ id: "1", name: "festival1" });
     });
   });
@@ -82,7 +82,7 @@ describe("Given the festival repo", () => {
     });
   });
 
-  describe("When getThings method fails", () => {
+  describe("When loadFestivals method fails", () => {
     test("Then it should throw an error", async () => {
       global.fetch = jest.fn().mockResolvedValue("Error found");
       const loadAll = mockFestivalRepo.loadFestivals();
@@ -90,10 +90,10 @@ describe("Given the festival repo", () => {
     });
   });
 
-  describe("When getThing method fails", () => {
+  describe("When loadOneFestival method fails", () => {
     test("Then it should throw an error", async () => {
       global.fetch = jest.fn().mockResolvedValue("Error found");
-      const getOneFestival = mockFestivalRepo.getFestival("1");
+      const getOneFestival = mockFestivalRepo.loadOneFestival("1");
       await expect(getOneFestival).rejects.toThrow();
     });
   });

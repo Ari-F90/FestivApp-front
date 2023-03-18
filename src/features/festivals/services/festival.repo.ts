@@ -13,7 +13,7 @@ export class FestivalApiRepo {
     return data;
   }
 
-  async getFestival(id: Festival["id"]): Promise<Festival> {
+  async loadOneFestival(id: Festival["id"]): Promise<Festival> {
     const url = this.url + "/" + id;
     const resp = await fetch(url);
     if (!resp.ok)
