@@ -8,6 +8,7 @@ export type ProtoFestival = {
   country: string;
   dates: string;
   capacity: number;
+  isFavorite: boolean;
   owner: User;
 };
 
@@ -20,5 +21,6 @@ export type Festival = {
   country: string;
   dates: string;
   capacity: number;
+  isFavorite: boolean;
   owner: User;
 };
