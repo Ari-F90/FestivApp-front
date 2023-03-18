@@ -1,4 +1,4 @@
-import { Festival, ProtoFestival } from "../models/festival";
+import { Festival } from "../models/festival";
 import { FestivalApiRepo } from "./festival.repo";
 
 const mockFestivalRepo = new FestivalApiRepo();
@@ -101,7 +101,7 @@ describe("Given the festival repo", () => {
   describe("When create method fails", () => {
     const mockCreatedFestival = {
       email: "test",
-      passwd: "email",
+      passwd: "12",
     } as unknown as Festival;
     test("Then it should throw an error", async () => {
       global.fetch = jest.fn().mockResolvedValue({
