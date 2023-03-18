@@ -24,3 +24,7 @@ export type Festival = {
   isFavorite: boolean;
   owner: User;
 };
+
+export type FestivalServerResp = {
+  results: Festival[];
+};
