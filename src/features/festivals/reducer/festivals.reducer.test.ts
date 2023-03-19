@@ -67,10 +67,6 @@ describe("Given the festivalReducer", () => {
 
   describe("When the deleteCreator method is called", () => {
     test("Then it should delete the festival", () => {
-      const mockFestival = {
-        id: "1",
-        name: "test",
-      };
       const action = ac.deleteCreator("1");
       const state = festivalReducer(initialState, action);
       expect(state).toEqual([]);
