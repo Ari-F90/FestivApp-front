@@ -9,13 +9,16 @@ export default function HomePage() {
       </div>
       <div className={styles.homepage__buttons}>
         <Link to={"/register"}>
-          <button className="registerbutton" type="button">
+          <button
+            className={styles.homepage__buttons__registerhome}
+            type="button"
+          >
             REGISTER
           </button>
         </Link>
 
         <Link to={"/login"}>
-          <button className="loginbutton" type="button">
+          <button className={styles.homepage__buttons__loginhome} type="button">
             LOGIN
           </button>
         </Link>

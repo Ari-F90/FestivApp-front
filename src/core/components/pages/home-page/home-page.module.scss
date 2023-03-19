@@ -1,6 +1,5 @@
 .homepage {
   background-color: black;
-
   height: 100vh;
   font-family: "Nunito Sans", sans-serif;
   &__title1 {
@@ -23,8 +22,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 2rem;
     gap: 1.5rem;
     background-color: black;
+    &__registerhome {
+      color: white;
+      background-color: rgb(215, 51, 141);
+      border-radius: 1rem;
+      padding: 0.4rem;
+      border-color: rgb(215, 51, 141);
+      width: 6rem;
+      height: 2rem;
+      font-family: "Nunito Sans", sans-serif;
+      font-weight: bold;
+    }
+    &__loginhome {
+      color: white;
+      background-color: rgb(215, 51, 141);
+      border-radius: 1rem;
+      padding: 0.4rem;
+      border-color: rgb(215, 51, 141);
+      width: 6rem;
+      height: 2rem;
+      font-family: "Nunito Sans", sans-serif;
+      font-weight: bold;
+    }
   }
 }
