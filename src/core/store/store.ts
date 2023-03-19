@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { festivalReducer } from "../../features/festivals/reducer/festivals.reducer";
+import { festivalReducer } from "../../../../front-final/src/reducer/festivals.reducer";
 import { userReducer } from "../../features/users/reducer/users.slice";
 
 export const store = configureStore({
