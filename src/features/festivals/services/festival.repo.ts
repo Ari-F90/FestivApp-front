@@ -1,28 +1,32 @@
-import { Festival } from "../models/festival";
+import {
+  Festival,
+  FestivalServerResp,
+  ProtoFestival,
+} from "../models/festival";
 
 export class FestivalApiRepo {
   url: string;
   constructor() {
     this.url = "http://localhost:5000/festivals";
   }
-  async loadFestivals(): Promise<Festival[]> {
+  async loadFestivals(): Promise<FestivalServerResp> {
     const resp = await fetch(this.url);
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as Festival[];
+    const data = await resp.json();
     return data;
   }
 
-  async loadOneFestival(id: Festival["id"]): Promise<Festival> {
+  async loadOneFestival(id: Festival["id"]): Promise<FestivalServerResp> {
     const url = this.url + "/" + id;
     const resp = await fetch(url);
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as Festival;
+    const data = await resp.json();
     return data;
   }
 
-  async createFestival(festival: Festival): Promise<Festival> {
+  async createFestival(festival: ProtoFestival): Promise<FestivalServerResp> {
     const resp = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify(festival),
@@ -32,11 +36,13 @@ export class FestivalApiRepo {
     });
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as Festival;
+    const data = await resp.json();
     return data;
   }
 
-  async updateFestival(festival: Partial<Festival>): Promise<Festival> {
+  async updateFestival(
+    festival: Partial<Festival>
+  ): Promise<FestivalServerResp> {
     const url = this.url + "/" + festival.id;
     const resp = await fetch(url, {
       method: "PATCH",
@@ -47,7 +53,7 @@ export class FestivalApiRepo {
     });
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
-    const data = (await resp.json()) as Festival;
+    const data = await resp.json();
     return data;
   }
 
