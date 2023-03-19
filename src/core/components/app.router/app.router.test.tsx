@@ -11,7 +11,14 @@ describe("Given AppRouter", () => {
     render(
       <Provider store={store}>
         <Router
-          initialEntries={["/home", "/about", "/register", "/login"]}
+          initialEntries={[
+            "/home",
+            "/about",
+            "/festivals",
+            "/favorites",
+            "/register",
+            "/login",
+          ]}
           initialIndex={number}
         >
           <AppRouter></AppRouter>
@@ -36,10 +43,27 @@ describe("Given AppRouter", () => {
       expect(element).toBeInTheDocument();
     });
   });
-
-  describe("When rendering and the path is '/register'", () => {
-    test("Then, the title 'register' from Home should be in the screen", async () => {
+  describe("When rendering and the path is '/festivals'", () => {
+    test("Then, the title 'Festival list' should be in the screen", async () => {
       await waitFor(async () => renderAppRouter(2));
+      const element = await screen.findByRole("heading", {
+        name: "Festival list",
+      });
+      expect(element).toBeInTheDocument();
+    });
+  });
+  describe("When rendering and the path is '/favorites'", () => {
+    test("Then, the title 'My favorites' should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(3));
+      const element = await screen.findByRole("heading", {
+        name: "My favorites",
+      });
+      expect(element).toBeInTheDocument();
+    });
+  });
+  describe("When rendering and the path is '/register'", () => {
+    test("Then, the title 'Register' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(4));
       const element = await screen.findByRole("heading", {
         name: "Register",
       });
@@ -49,7 +73,7 @@ describe("Given AppRouter", () => {
 
   describe("When rendering and the path is '/login'", () => {
     test("Then, the title 'Login' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(3));
+      await waitFor(async () => renderAppRouter(5));
       const element = await screen.findByRole("heading", {
         name: "Login",
       });

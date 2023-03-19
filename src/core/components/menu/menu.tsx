@@ -19,26 +19,21 @@ type MenuProps = {
 
 export const Menu = ({ options }: MenuProps) => {
   return (
-    <>
-      <nav className={styles.menuburger}>
-        <div className="menu__hover">
-          <img
-            className="logos__logo3"
-            src="../img/burger.png"
-            alt="Burger logo"
-          />
-          D
-          <ul className={styles.menupaths}>
-            {options.map((item) => (
-              <li key={item.label}>
-                <Link to={item.path} className="menu-item">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-    </>
+    <nav className={styles.menuburger}>
+      <img
+        className={styles.burgerImg}
+        src="../burger.png"
+        alt="Burger menu logo"
+      ></img>
+      <ul className={styles.menupaths}>
+        {options.map((item) => (
+          <li key={item.label}>
+            <Link to={item.path} className="menu-item">
+              {item.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
