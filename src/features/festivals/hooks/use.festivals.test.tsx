@@ -83,10 +83,7 @@ describe("Given a Test Component", () => {
 });
 
 describe("Given the useFestivals Custom Hook and TestError component", () => {
-  let spyLog: jest.SpyInstance;
   beforeEach(async () => {
-    spyLog = jest.spyOn(global.console, "log");
-
     const mockRepoError = {
       loadOneFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
       addFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
