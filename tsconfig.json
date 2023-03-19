@@ -19,6 +19,6 @@
   "include": [
     "src",
     "src/core/components/pages/login-page",
-    "../front-final/src/reducer"
+    "src/features/festivals/reducer"
   ]
 }
