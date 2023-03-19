@@ -1,13 +1,13 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { configureStore } from "@reduxjs/toolkit";
+
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
-import { MemoryRouter, MemoryRouter as Router } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { Festival } from "../../../features/festivals/models/festival";
-import { festivalReducer } from "../../../features/festivals/reducer/festivals.reducer";
 import { store } from "../../store/store";
+
 import { Card } from "../card/card";
 import { FestivalList } from "./festivalList";
 
@@ -24,7 +24,6 @@ const mockFestivals = {
   ],
 };
 
-loadFestivals: jest.fn();
 describe("Given Festival List component", () => {
   beforeEach(() => {
     render(
