@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import styles from "./menu.module.scss";
 
 export type MenuOption = {
   label: string;
@@ -19,7 +20,7 @@ type MenuProps = {
 export const Menu = ({ options }: MenuProps) => {
   return (
     <>
-      <nav className="menu_burger">
+      <nav className={styles.menuburger}>
         <div className="menu__hover">
           <img
             className="logos__logo3"
@@ -27,7 +28,7 @@ export const Menu = ({ options }: MenuProps) => {
             alt="Burger logo"
           />
           D
-          <ul className="menu_paths">
+          <ul className={styles.menupaths}>
             {options.map((item) => (
               <li key={item.label}>
                 <Link to={item.path} className="menu-item">
