@@ -1,0 +1,38 @@
+.card {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 2rem;
+  border: 1px solid black;
+  color: black;
+  font-family: "Nunito-sans", sans-serif;
+  gap: 3rem;
+  width: 13rem;
+  height: 14rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  &__element {
+    width: 70%;
+    height: 60%;
+    object-fit: contain;
+  }
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+  &__properties {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__name {
+      align-self: flex-start;
+    }
+    &__dates {
+      align-self: flex-end;
+    }
+  }
+}
