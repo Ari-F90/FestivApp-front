@@ -2,6 +2,23 @@
   background-color: black;
   font-size: 3 rem;
   text-align: center;
-  height: 4rem;
+  height: 5rem;
   color: white;
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+  &__logo {
+    width: 2.3rem;
+    height: 2.3rem;
+    margin-top: 1.2rem;
+    margin-left: 1rem;
+  }
+  &__burger {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 1.6rem;
+    margin-right: 1rem;
+  }
 }
