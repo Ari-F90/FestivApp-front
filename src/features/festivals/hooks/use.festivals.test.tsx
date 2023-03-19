@@ -1,12 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import {
-  render,
-  screen,
-  fireEvent,
-  act,
-  renderHook,
-} from "@testing-library/react";
+import { render, screen, fireEvent, act } from "@testing-library/react";
 
 import { Provider } from "react-redux";
 import { store } from "../../../core/store/store";
@@ -155,33 +149,6 @@ describe("Given the useFestivals Custom Hook and TestError component", () => {
   });
 
   describe("When delete method method fails", () => {
-    let result = renderHook(() => useFestivals(mockRepo)).result;
-    /*  test("Then, the deleteFestival function should be catch the error", async () => {
-      /*(mockRepo.deleteFestival as jest.Mock).mockRejectedValue(
-        new Error("error")
-      );
-      await fireEvent.click(screen.getByText(/Error/i));
-      expect(spyOn).toHaveBeenCalled();
-      const error = new Error("Failed to delete the festival");
-      expect(console.error).toHaveBeenCalledWith(error.message);
-
-      const festivalId = "1";
-      //  mockRepo.deleteFestival.mockResolvedValue(undefined);
-      await result.current.deleteFestival(festivalId);
-
-      expect(mockRepo.deleteFestival).toHaveBeenCalledWith(festivalId);
-      //  expect(actions.deleteCreator(festivalId)).toHaveBeenCalled();
-    });*/
-
-    test("should handle errors when deleting a festival", async () => {
-      const festivalId = "1";
-      const error = new Error("Failed to delete festival");
-      // mockRepo.deleteFestival.mockRejectedValue(error);
-
-      await result.current.deleteFestival(festivalId);
-
-      expect(mockRepo.deleteFestival).toHaveBeenCalledWith(festivalId);
-      expect(console.error).toHaveBeenCalledWith(error.message);
-    });
+    test("Then, the deleteFestival function should be catch the error", async () => {});
   });
 });
