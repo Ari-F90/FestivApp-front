@@ -16,5 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "src/core/components/pages/login-page"]
+  "include": [
+    "src",
+    "src/core/components/pages/login-page",
+    "../front-final/src/reducer"
+  ]
 }

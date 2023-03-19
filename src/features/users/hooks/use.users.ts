@@ -15,7 +15,7 @@ export function useUsers(repo: UserApiRepo) {
       const newUser = await repo.register(info);
       dispatch(register(newUser.results[0]));
     } catch (error) {
-      console.log((error as Error).message);
+      console.error((error as Error).message);
     }
   };
 
@@ -24,7 +24,7 @@ export function useUsers(repo: UserApiRepo) {
       const newUser = await repo.login(info);
       dispatch(login(newUser.results[0]));
     } catch (error) {
-      console.log((error as Error).message);
+      console.error((error as Error).message);
     }
   };
   return {

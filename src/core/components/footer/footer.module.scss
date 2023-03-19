@@ -1,0 +1,13 @@
+.footer {
+  background-color: black;
+  font-size: 0.8rem;
+  text-align: center;
+  color: white;
+  height: 5rem;
+  display: flex;
+  &__address {
+    justify-self: center;
+    align-self: center;
+    margin: auto;
+  }
+}

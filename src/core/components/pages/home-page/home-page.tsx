@@ -1,19 +1,25 @@
 import { Link } from "react-router-dom";
-
+import styles from "./home-page.module.scss";
 export default function HomePage() {
   return (
-    <section className="homepage">
-      <h2>Find your plan. Get ready</h2>
-      <Link to={"/register"}>
-        <button className="registerbutton" type="button">
-          REGISTER
-        </button>
-      </Link>
-      <Link to={"/login"}>
-        <button className="loginbutton" type="button">
-          LOGIN
-        </button>
-      </Link>
+    <section className={styles.homepage}>
+      <div className={styles.homepage__image}>
+        <h2 className={styles.homepage__title1}>Find your plan.</h2>
+        <h2 className={styles.homepage__title2}> Get ready</h2>
+      </div>
+      <div className={styles.homepage__buttons}>
+        <Link to={"/register"}>
+          <button className="registerbutton" type="button">
+            REGISTER
+          </button>
+        </Link>
+
+        <Link to={"/login"}>
+          <button className="loginbutton" type="button">
+            LOGIN
+          </button>
+        </Link>
+      </div>
     </section>
   );
 }
