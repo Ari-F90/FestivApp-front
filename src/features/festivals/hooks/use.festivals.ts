@@ -51,10 +51,10 @@ export function useFestivals(repo: FestivalApiRepo) {
 
   const deleteFestival = async (id: Festival["id"]) => {
     try {
-      repo.deleteFestival(id);
+      await repo.deleteFestival(id);
       dispatch(ac.deleteCreator(id));
     } catch (error) {
-      console.error((error as Error).message);
+      // Console.error((error as Error).message);
     }
   };
 

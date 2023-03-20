@@ -1,3 +1,5 @@
+/* eslint-disable jest/valid-expect */
+/* eslint-disable jest/no-conditional-expect */
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen, fireEvent, act } from "@testing-library/react";
@@ -21,9 +23,8 @@ const mockFestival: Festival = {
   name: "festival1",
 } as Festival;
 
-const spyOn = jest.spyOn(console, "error");
 describe("Given a Test Component", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     const TestComponent = function () {
       const {
         festivals,
@@ -98,14 +99,13 @@ describe("Given a Test Component", () => {
 });
 
 describe("Given the useFestivals Custom Hook and TestError component", () => {
+  const mockRepoError = {
+    loadOneFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
+    addFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
+    updateFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
+    deleteFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
+  } as unknown as FestivalApiRepo;
   beforeEach(async () => {
-    const mockRepoError = {
-      loadOneFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-      addFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-      updateFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-      deleteFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-    } as unknown as FestivalApiRepo;
-
     const TestError = function () {
       const { loadOneFestival, addFestival, updateFestival, deleteFestival } =
         useFestivals(mockRepoError);
@@ -139,16 +139,19 @@ describe("Given the useFestivals Custom Hook and TestError component", () => {
     );
   });
 
-  describe("When load one method method fails", () => {
-    test("Then it should call the error console", () => {
-      (mockRepo.loadOneFestival as jest.Mock).mockRejectedValue(
-        new Error("error")
-      );
-      expect(spyOn).toHaveBeenCalled();
-    });
-  });
-
   describe("When delete method method fails", () => {
-    test("Then, the deleteFestival function should be catch the error", async () => {});
+    const spyOn = jest.spyOn(console, "error").mockImplementation(() => {});
+
+    test("Then it should call the error console", async () => {
+      try {
+        await mockRepoError.deleteFestival("2");
+      } catch (error) {
+        expect(error).toBeInstanceOf(Error);
+      }
+
+      expect(mockRepoError.deleteFestival).toHaveBeenCalled();
+      expect(spyOn).toHaveBeenCalled();
+      expect(console.error).toHaveBeenCalledTimes(1);
+    });
   });
 });
