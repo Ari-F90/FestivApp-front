@@ -12,10 +12,12 @@ const FavoritesPage = lazy(
 );
 const RegisterPage = lazy(() => import("../../components/register/register"));
 const LoginPage = lazy(() => import("../../components/login/login"));
+const Details = lazy(() => import("../../../core/components/details/details"));
 
 export const routesOptions: MenuOption[] = [
   { label: "Register", path: "/register" },
   { label: "Login", path: "/login" },
+  { label: "Details", path: "/details/:id" },
 ];
 
 export function AppRouter() {
@@ -46,6 +48,10 @@ export function AppRouter() {
         <Route
           path={routesOptions[1].path}
           element={<LoginPage></LoginPage>}
+        ></Route>
+        <Route
+          path={routesOptions[2].path}
+          element={<Details></Details>}
         ></Route>
       </Routes>
     </Suspense>
