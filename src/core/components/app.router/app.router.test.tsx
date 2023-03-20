@@ -18,6 +18,7 @@ describe("Given AppRouter", () => {
             "/favorites",
             "/register",
             "/login",
+            "/details/:id",
           ]}
           initialIndex={number}
         >
@@ -76,6 +77,15 @@ describe("Given AppRouter", () => {
       await waitFor(async () => renderAppRouter(5));
       const element = await screen.findByRole("heading", {
         name: "Login",
+      });
+      expect(element).toBeInTheDocument();
+    });
+  });
+  describe("When rendering and the path is '/details/:id'", () => {
+    test("Then, the title 'Details' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(6));
+      const element = await screen.findByRole("heading", {
+        name: "Details",
       });
       expect(element).toBeInTheDocument();
     });

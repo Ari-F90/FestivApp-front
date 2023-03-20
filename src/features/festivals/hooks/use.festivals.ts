@@ -22,7 +22,7 @@ export function useFestivals(repo: FestivalApiRepo) {
     loadFestivals();
   }, [dispatch, repo]);
 
-  const loadOneFestival = async (id: string) => {
+  const loadOneFestival = async (id: Festival["id"]) => {
     try {
       const data = await repo.loadOneFestival(id);
       dispatch(ac.loadOneCreator(data.results[0]));

@@ -11,7 +11,7 @@ export function Card({ festival }: CardProps) {
     <div>
       <li className={styles.card}>
         <div className={styles.card__element}>
-          <Link to={"/details"}>
+          <Link to={`/details/${festival.id}`} relative="path">
             <img
               className={styles.card__image}
               src={festival.image}
