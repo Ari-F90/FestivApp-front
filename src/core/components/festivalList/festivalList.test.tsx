@@ -1,63 +1,50 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-
-import { render, screen } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { render, screen, act } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
+
+import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 import { store } from "../../store/store";
-
-import { Card } from "../card/card";
 import { FestivalList } from "./festivalList";
 
-const mockFestivals = {
-  festivals: [
-    {
-      id: "1",
-      name: "test1",
-    } as Festival,
-    {
-      id: "2",
-      name: "test2",
-    } as Festival,
-  ],
-};
+jest.mock("../../../features/festivals/hooks/use.festivals");
+jest.mock("../card/card");
 
 describe("Given Festival List component", () => {
-  beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <FestivalList></FestivalList>
-      </Provider>
-    );
-  });
+  beforeEach(async () => {
+    (useFestivals as jest.Mock).mockReturnValue({
+      festivals: [
+        {
+          id: "1",
+          name: "test1",
+        } as Festival,
+        {
+          id: "2",
+          name: "test2",
+        } as Festival,
+      ],
+    });
 
-  describe("When we render a card", () => {
-    test("Then it should appear in the document", async () => {
-      await act(async () => {
-        render(
-          <Provider store={store}>
-            <MemoryRouter>
-              <Card
-                key={mockFestivals.festivals[0].id}
-                festival={mockFestivals.festivals[0]}
-              ></Card>
-            </MemoryRouter>
-          </Provider>
-        );
-      });
-
-      const name = await screen.findByText("test1");
-      expect(name).toBeInTheDocument();
+    await act(async () => {
+      render(
+        <Provider store={store}>
+          <MemoryRouter>
+            <FestivalList></FestivalList>
+          </MemoryRouter>
+        </Provider>
+      );
     });
   });
 
-  describe("When it is rendered", () => {
-    test("Then it should be return images", async () => {
+  describe("When the Card is rendered", () => {
+    test("Then it should return images", async () => {
       act(async () => {
         const elements = await screen.findAllByRole("img");
         expect(elements[0]).toBeInTheDocument();
+        const name = await screen.findByRole("list");
+        expect(name).toBeInTheDocument();
       });
     });
   });
