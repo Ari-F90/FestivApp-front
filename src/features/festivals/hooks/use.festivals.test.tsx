@@ -2,7 +2,7 @@
 /* eslint-disable jest/no-conditional-expect */
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, fireEvent, act } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
 import { store } from "../../../core/store/store";
