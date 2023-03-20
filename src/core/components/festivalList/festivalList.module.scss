@@ -1,0 +1,9 @@
+.festivals {
+  margin-top: 6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 12rem);
+  grid-auto-rows: 15rem;
+  grid-gap: 2rem;
+  justify-content: center;
+  align-content: center;
+}
