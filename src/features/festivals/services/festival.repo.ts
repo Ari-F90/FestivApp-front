@@ -23,6 +23,7 @@ export class FestivalApiRepo {
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
     const data = await resp.json();
+
     return data;
   }
 
