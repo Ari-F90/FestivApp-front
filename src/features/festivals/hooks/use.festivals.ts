@@ -54,7 +54,7 @@ export function useFestivals(repo: FestivalApiRepo) {
       await repo.deleteFestival(id);
       dispatch(ac.deleteCreator(id));
     } catch (error) {
-      // Console.error((error as Error).message);
+      //Console.error((error as Error).message);
     }
   };
 
