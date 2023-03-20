@@ -19,6 +19,7 @@
   "include": [
     "src",
     "src/core/components/pages/login-page",
-    "src/features/festivals/reducer"
+    "src/features/festivals/reducer",
+    "../Ariadna-Frias-Final-Project-back-202301-mad/src/form"
   ]
 }
