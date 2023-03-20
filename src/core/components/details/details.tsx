@@ -29,16 +29,53 @@ export default function Details() {
               />
             </div>
             <ul className={styles.card__details}>
-              <li>{festivalDetails?.name}</li>
+              <div className={styles.card__subtitle}>
+                <div>
+                  <span className={styles.card__name}>
+                    {festivalDetails?.name}
+                  </span>
+                </div>
+                <div>
+                  <span>
+                    <img
+                      className={styles.favnot}
+                      src="../../../../../favnot.png"
+                      alt="favorite icon"
+                    ></img>
+                  </span>
+                </div>
+              </div>
+              <li></li>
               <li>Type of music: {festivalDetails?.musicType}</li>
               <li>City: {festivalDetails?.city}</li>
               <li>Country: {festivalDetails?.country}</li>
               <li>Dates: {festivalDetails?.dates}</li>
               <li>Capacity: {festivalDetails?.capacity} people</li>
               <li>Created by: {festivalDetails?.owner.name}</li>
+              <div className={styles.actions_buttons}>
+                <div>
+                  <span>
+                    <img
+                      className={styles.editbutton}
+                      src="../../../../../edit.png"
+                      alt="editbutton"
+                    ></img>
+                  </span>
+                </div>
+                <div>
+                  <span>
+                    <img
+                      className={styles.deletebutton}
+                      src="../../../../../delete.png"
+                      alt="deletebutton"
+                    ></img>
+                  </span>
+                </div>
+              </div>
             </ul>
           </span>
         </span>
+
         <div className={styles.button_container}>
           <div className={styles.button_container_flex}>
             <Link to={"/festivals"}>
