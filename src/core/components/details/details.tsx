@@ -39,11 +39,13 @@ export default function Details() {
             </ul>
           </span>
         </span>
-        <Link to={"/festivals"}>
-          <button>
-            <span className={styles.button_top}></span>
-          </button>
-        </Link>
+        <div className={styles.button_container}>
+          <div className={styles.button_container_flex}>
+            <Link to={"/festivals"}>
+              <button className={styles.button_top}>BACK TO FESTIVALS</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );

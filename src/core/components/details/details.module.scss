@@ -1,6 +1,6 @@
 .details {
   background-color: black;
-  height: 90vh;
+  height: 100vh;
   font-family: "Nunito Sans", sans-serif;
   color: white;
   &__title {
@@ -11,4 +11,31 @@
     margin-left: 3rem;
     margin-right: 3rem;
   }
+}
+
+.button_top {
+  margin-top: 15rem;
+  color: white;
+  background-color: rgb(215, 51, 141);
+  border-radius: 1rem;
+  padding: 0.4rem;
+  border-color: rgb(215, 51, 141);
+  width: 10rem;
+  height: 3rem;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: bold;
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+}
+
+.details__row {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+}
+.card__details {
+  list-style: none;
 }
