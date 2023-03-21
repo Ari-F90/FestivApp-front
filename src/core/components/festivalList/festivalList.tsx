@@ -11,6 +11,21 @@ export function FestivalList() {
   const { festivals } = useFestivals(repo);
   return (
     <>
+      <div className={styles.festivals_flex}>
+        <div></div>
+        <div>
+          <button>
+            <span>
+              <img
+                className={styles.addbutton}
+                src="../../../../../../img/add.png"
+                alt="addbutton"
+              ></img>
+            </span>
+          </button>
+        </div>
+      </div>
+
       <div className={styles.festivals}>
         {festivals.map((item: Festival) => (
           <Card festival={item} key={item.id}></Card>

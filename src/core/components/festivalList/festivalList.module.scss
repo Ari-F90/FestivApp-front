@@ -1,9 +1,20 @@
 .festivals {
-  margin-top: 6rem;
+  margin-top: 7rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, 12rem);
   grid-auto-rows: 15rem;
   grid-gap: 2rem;
   justify-content: center;
   align-content: center;
+}
+
+.festivals_flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addbutton {
+  margin-top: 5rem;
+  width: 3rem;
+  height: 3rem;
 }
