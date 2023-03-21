@@ -1,13 +1,9 @@
-import {
-  Festival,
-  FestivalServerResp,
-  ProtoFestival,
-} from "../models/festival";
+import { Festival, FestivalServerResp } from "../models/festival";
 
 export class FestivalApiRepo {
   url: string;
   constructor() {
-    this.url = "http://localhost:5000/festivals";
+    this.url = "https://final-project-festivapp.onrender.com/festivals";
   }
   async loadFestivals(): Promise<FestivalServerResp> {
     const resp = await fetch(this.url);
@@ -27,7 +23,9 @@ export class FestivalApiRepo {
     return data;
   }
 
-  async createFestival(festival: ProtoFestival): Promise<FestivalServerResp> {
+  async createFestival(
+    festival: Partial<Festival>
+  ): Promise<FestivalServerResp> {
     const resp = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify(festival),
