@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../core/store/store";
-import { ProtoFestival, Festival } from "../models/festival";
+import { Festival } from "../models/festival";
 
 import * as ac from "../reducer/festivals.actions.creator";
 import { FestivalApiRepo } from "../services/festival.repo.js";
@@ -31,7 +31,7 @@ export function useFestivals(repo: FestivalApiRepo) {
     }
   };
 
-  const addFestival = async (festival: ProtoFestival) => {
+  const addFestival = async (festival: Partial<Festival>) => {
     try {
       const finalFestival = await repo.createFestival(festival);
       dispatch(ac.addCreator(finalFestival.results[0]));
