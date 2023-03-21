@@ -14,6 +14,9 @@ export default function Details() {
   const repo = useMemo(() => new FestivalApiRepo(), []);
   const { festivals } = useFestivals(repo);
 
+  /* const handleDeleteButton = (id: Festival["id"]) => {
+    deleteFestival(id);
+  };*/
   const festivalDetails = festivals.find((item) => item.id === id);
   return (
     <>
@@ -39,7 +42,7 @@ export default function Details() {
                   <span>
                     <img
                       className={styles.favnot}
-                      src="../../../../../favnot.png"
+                      src="../../../../../img/favnot.png"
                       alt="favorite icon"
                     ></img>
                   </span>
@@ -53,20 +56,28 @@ export default function Details() {
               <li>Capacity: {festivalDetails?.capacity} people</li>
               <li>Created by: {festivalDetails?.owner.name}</li>
               <div className={styles.actions_buttons}>
-                <div>
-                  <span>
-                    <img
-                      className={styles.editbutton}
-                      src="../../../../../edit.png"
-                      alt="editbutton"
-                    ></img>
-                  </span>
-                </div>
+                <button
+                /* onClick={() => {
+                    handleDeleteButton(
+                      deleteFestival({id})
+                    );
+                  }}*/
+                >
+                  <div>
+                    <span>
+                      <img
+                        className={styles.editbutton}
+                        src="../../../../../img/edit.png"
+                        alt="editbutton"
+                      ></img>
+                    </span>
+                  </div>
+                </button>
                 <div>
                   <span>
                     <img
                       className={styles.deletebutton}
-                      src="../../../../../delete.png"
+                      src="../../../../../img/delete.png"
                       alt="deletebutton"
                     ></img>
                   </span>
