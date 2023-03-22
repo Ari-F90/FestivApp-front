@@ -3,7 +3,7 @@ import { ServerResp, User } from "../models/user";
 export class UserApiRepo {
   url: string;
   constructor() {
-    this.url = "https://final-project-festivapp.onrender.com/users";
+    this.url = "http://localhost:5000/users";
   }
 
   async register(user: Partial<User>): Promise<ServerResp> {
@@ -31,6 +31,8 @@ export class UserApiRepo {
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
     const data = await resp.json();
+    //localStorage.removeItem("token");
+    if (data.token) JSON.stringify(localStorage.setItem("token", data.token));
     return data;
   }
 }
