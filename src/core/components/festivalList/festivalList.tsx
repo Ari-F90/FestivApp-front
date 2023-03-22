@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
@@ -14,15 +15,17 @@ export function FestivalList() {
       <div className={styles.festivals_flex}>
         <div></div>
         <div>
-          <button>
-            <span>
-              <img
-                className={styles.addbutton}
-                src="../../../../../../img/add.png"
-                alt="addbutton"
-              ></img>
-            </span>
-          </button>
+          <Link to={"/add"}>
+            <button>
+              <span>
+                <img
+                  className={styles.addbutton}
+                  src="../../../../../../img/add.png"
+                  alt="addbutton"
+                ></img>
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
 
