@@ -4,6 +4,7 @@
 /* eslint-disable testing-library/no-render-in-setup */
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import * as ac from "../reducer/festivals.actions.creator";
+
 import { Provider } from "react-redux";
 import { store } from "../../../core/store/store";
 import { Festival } from "../models/festival";
@@ -29,10 +30,11 @@ const mockRepo = {
 
   const mockFile = new File(["image"], "test");
 
+  let initialState: Festival[] = [{ id: "1", name: "festival" } as Festival];
+  const action = ac.addCreator(mockFestival);
+  const state = festivalReducer(initialState, action);
+
   describe("Given a Test Component", () => {
-    let initialState: Festival[] = [{ id: "1", name: "festival" } as Festival];
-    const action = ac.addCreator(mockFestival);
-    const state = festivalReducer(initialState, action);
     beforeEach(async () => {
       const TestComponent = function () {
         const {
