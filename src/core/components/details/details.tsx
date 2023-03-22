@@ -14,8 +14,8 @@ export default function Details() {
   const repo = useMemo(() => new FestivalApiRepo(), []);
   const { festivals } = useFestivals(repo);
 
-  /* const handleDeleteButton = (id: Festival["id"]) => {
-    deleteFestival(id);
+  /*Const handleDeleteButton = () => {
+    deleteFestival(festivalId);
   };*/
   const festivalDetails = festivals.find((item) => item.id === id);
   return (
@@ -56,23 +56,19 @@ export default function Details() {
               <li>Capacity: {festivalDetails?.capacity} people</li>
               <li>Created by: {festivalDetails?.owner.name}</li>
               <div className={styles.actions_buttons}>
-                <button
-                /* onClick={() => {
-                    handleDeleteButton(
-                      deleteFestival({id})
-                    );
-                  }}*/
-                >
-                  <div>
-                    <span>
-                      <img
-                        className={styles.editbutton}
-                        src="../../../../../img/edit.png"
-                        alt="editbutton"
-                      ></img>
-                    </span>
-                  </div>
-                </button>
+                <div>
+                  <Link to={`/edit/${festivalDetails?.id}`} relative="path">
+                    <button>
+                      <span>
+                        <img
+                          className={styles.editbutton}
+                          src="../../../../../img/edit.png"
+                          alt="editbutton"
+                        ></img>
+                      </span>
+                    </button>
+                  </Link>
+                </div>
                 <div>
                   <span>
                     <img
