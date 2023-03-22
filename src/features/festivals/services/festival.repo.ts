@@ -3,7 +3,7 @@ import { Festival, FestivalServerResp } from "../models/festival";
 export class FestivalApiRepo {
   url: string;
   constructor() {
-    this.url = "https://final-project-festivapp.onrender.com/festivals";
+    this.url = "http://localhost:5000/festivals";
   }
   async loadFestivals(): Promise<FestivalServerResp> {
     const resp = await fetch(this.url);
@@ -31,6 +31,7 @@ export class FestivalApiRepo {
       body: JSON.stringify(festival),
       headers: {
         "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     if (!resp.ok)
@@ -42,12 +43,13 @@ export class FestivalApiRepo {
   async updateFestival(
     festival: Partial<Festival>
   ): Promise<FestivalServerResp> {
-    const url = this.url + "/" + festival.id;
+    const url = this.url + "/edit" + festival.id;
     const resp = await fetch(url, {
       method: "PATCH",
       body: JSON.stringify(festival),
       headers: {
         "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     if (!resp.ok)
