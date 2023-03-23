@@ -22,7 +22,7 @@ export const Menu = ({ options }: MenuProps) => {
     <nav className={styles.menuburger}>
       <img
         className={styles.burgerImg}
-        src="../burger.png"
+        src="../img/burger.png"
         alt="Burger menu logo"
       ></img>
       <ul className={styles.menupaths}>

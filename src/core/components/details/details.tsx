@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
-import { FestivalApiRepo } from "../../../features/festivals/services/festival.repo";
+import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 import styles from "./details.module.scss";
 
 export type CardProps = {
@@ -14,6 +14,9 @@ export default function Details() {
   const repo = useMemo(() => new FestivalApiRepo(), []);
   const { festivals } = useFestivals(repo);
 
+  /*Const handleDeleteButton = () => {
+    deleteFestival(festivalId);
+  };*/
   const festivalDetails = festivals.find((item) => item.id === id);
   return (
     <>
@@ -39,7 +42,7 @@ export default function Details() {
                   <span>
                     <img
                       className={styles.favnot}
-                      src="../../../../../favnot.png"
+                      src="../../../../../img/favnot.png"
                       alt="favorite icon"
                     ></img>
                   </span>
@@ -54,19 +57,21 @@ export default function Details() {
               <li>Created by: {festivalDetails?.owner.name}</li>
               <div className={styles.actions_buttons}>
                 <div>
-                  <span>
-                    <img
-                      className={styles.editbutton}
-                      src="../../../../../edit.png"
-                      alt="editbutton"
-                    ></img>
-                  </span>
+                  <Link to={`/edit/${festivalDetails?.id}`}>
+                    <button>
+                      <img
+                        className={styles.editbutton}
+                        src="../../../../../img/edit.png"
+                        alt="editbutton"
+                      ></img>
+                    </button>
+                  </Link>
                 </div>
                 <div>
                   <span>
                     <img
                       className={styles.deletebutton}
-                      src="../../../../../delete.png"
+                      src="../../../../../img/delete.png"
                       alt="deletebutton"
                     ></img>
                   </span>

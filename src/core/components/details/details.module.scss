@@ -34,7 +34,14 @@
 .details__row {
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
+  margin-top: 6rem;
+}
+img {
+  width: 13rem;
+  height: 11rem;
+}
+.details__imgcontainer {
+  object-fit: cover;
 }
 .card__details {
   display: flex;
@@ -46,7 +53,7 @@
   background-color: white;
   border-radius: 0 0 10px 10px;
   padding-left: 7px;
-  padding-top: 2rem;
+  padding-top: 1rem;
   gap: 0.5rem;
   padding-right: 7px;
   padding-bottom: 1rem;

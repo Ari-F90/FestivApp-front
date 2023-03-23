@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { newImage } from "../services/firebase/firebase-user";
 import { AppDispatch, RootState } from "../../../core/store/store";
-import { ProtoFestival, Festival } from "../models/festival";
-
+import { Festival } from "../models/festival";
 import * as ac from "../reducer/festivals.actions.creator";
-import { FestivalApiRepo } from "../services/festival.repo.js";
+import { FestivalApiRepo } from "../services/repository/festival.repo";
 
 export function useFestivals(repo: FestivalApiRepo) {
   const festivals = useSelector((state: RootState) => state.festivals);
@@ -31,8 +31,10 @@ export function useFestivals(repo: FestivalApiRepo) {
     }
   };
 
-  const addFestival = async (festival: ProtoFestival) => {
+  const addFestival = async (festival: Partial<Festival>, file: File) => {
     try {
+      await newImage(festival, file);
+
       const finalFestival = await repo.createFestival(festival);
       dispatch(ac.addCreator(finalFestival.results[0]));
     } catch (error) {
@@ -40,8 +42,9 @@ export function useFestivals(repo: FestivalApiRepo) {
     }
   };
 
-  const updateFestival = async (festival: Partial<Festival>) => {
+  const updateFestival = async (festival: Partial<Festival>, file: File) => {
     try {
+      await newImage(festival, file);
       const finalFestival = await repo.updateFestival(festival);
       dispatch(ac.updateCreator(finalFestival.results[0]));
     } catch (error) {

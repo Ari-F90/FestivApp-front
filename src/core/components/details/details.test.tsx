@@ -42,7 +42,6 @@ describe("Given Details page component", () => {
   describe("When we render the component", () => {
     test('Then, the title "Details" should be in the document', async () => {
       const element = screen.getByRole("heading");
-
       expect(element).toBeInTheDocument();
     });
   });

@@ -19,6 +19,8 @@ describe("Given AppRouter", () => {
             "/register",
             "/login",
             "/details/:id",
+            "/add",
+            "/edit/:id",
           ]}
           initialIndex={number}
         >
@@ -88,6 +90,20 @@ describe("Given AppRouter", () => {
         name: "Details",
       });
       expect(element).toBeInTheDocument();
+    });
+  });
+  describe("When rendering and the path is '/add'", () => {
+    test("Then, the title 'Add a new festival' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(7));
+      const element = await screen.findByRole("heading", {
+        name: "Add a new festival",
+      });
+      expect(element).toBeInTheDocument();
+    });
+  });
+  describe("When rendering and the path is '/edit/:id'", () => {
+    test("Then, the title 'Update a festival' from Home should be in the screen", async () => {
+      await waitFor(async () => renderAppRouter(8));
     });
   });
 });

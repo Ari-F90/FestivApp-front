@@ -1,8 +1,4 @@
-import {
-  Festival,
-  FestivalServerResp,
-  ProtoFestival,
-} from "../models/festival";
+import { FestivalServerResp, Festival } from "../../models/festival";
 
 export class FestivalApiRepo {
   url: string;
@@ -27,12 +23,15 @@ export class FestivalApiRepo {
     return data;
   }
 
-  async createFestival(festival: ProtoFestival): Promise<FestivalServerResp> {
+  async createFestival(
+    festival: Partial<Festival>
+  ): Promise<FestivalServerResp> {
     const resp = await fetch(this.url, {
       method: "POST",
       body: JSON.stringify(festival),
       headers: {
         "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     if (!resp.ok)
@@ -44,12 +43,13 @@ export class FestivalApiRepo {
   async updateFestival(
     festival: Partial<Festival>
   ): Promise<FestivalServerResp> {
-    const url = this.url + "/" + festival.id;
+    const url = this.url + "/edit" + festival.id;
     const resp = await fetch(url, {
       method: "PATCH",
       body: JSON.stringify(festival),
       headers: {
         "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
     if (!resp.ok)

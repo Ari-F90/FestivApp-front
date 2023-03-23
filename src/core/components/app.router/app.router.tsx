@@ -13,11 +13,15 @@ const FavoritesPage = lazy(
 const RegisterPage = lazy(() => import("../../components/register/register"));
 const LoginPage = lazy(() => import("../../components/login/login"));
 const Details = lazy(() => import("../../../core/components/details/details"));
+const AddFormPage = lazy(() => import("../pages/add-page/add-page"));
+const EditFormPage = lazy(() => import("../pages/edit-page/edit-page"));
 
 export const routesOptions: MenuOption[] = [
   { label: "Register", path: "/register" },
   { label: "Login", path: "/login" },
   { label: "Details", path: "/details/:id" },
+  { label: "Add", path: "/add" },
+  { label: "Edit", path: "/edit/:id" },
 ];
 
 export function AppRouter() {
@@ -52,6 +56,14 @@ export function AppRouter() {
         <Route
           path={routesOptions[2].path}
           element={<Details></Details>}
+        ></Route>
+        <Route
+          path={routesOptions[3].path}
+          element={<AddFormPage></AddFormPage>}
+        ></Route>
+        <Route
+          path={routesOptions[4].path}
+          element={<EditFormPage></EditFormPage>}
         ></Route>
       </Routes>
     </Suspense>

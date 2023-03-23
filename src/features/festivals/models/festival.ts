@@ -7,7 +7,7 @@ export type ProtoFestival = {
   city: string;
   country: string;
   dates: string;
-  capacity: number;
+  capacity: number | string;
   isFavorite: boolean;
   owner: User;
 };
@@ -20,7 +20,7 @@ export type Festival = {
   city: string;
   country: string;
   dates: string;
-  capacity: number;
+  capacity: number | string;
   isFavorite: boolean;
   owner: User;
 };

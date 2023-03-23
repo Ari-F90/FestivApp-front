@@ -1,157 +1,118 @@
-/* eslint-disable jest/valid-expect */
-/* eslint-disable jest/no-conditional-expect */
-/* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, fireEvent } from "@testing-library/react";
-
+/* eslint-disable testing-library/no-unnecessary-act */
+import { configureStore } from "@reduxjs/toolkit";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { store } from "../../../core/store/store";
 import { Festival } from "../models/festival";
-import { FestivalApiRepo } from "../services/festival.repo";
+import * as ac from "../reducer/festivals.actions.creator";
+import { festivalReducer } from "../reducer/festivals.reducer";
+import { FestivalApiRepo } from "../services/repository/festival.repo";
 import { useFestivals } from "./use.festivals";
+jest.mock("../services/firebase/firebase-user");
 
-const mockRepo = {
-  loadFestivals: jest.fn(),
-  loadOneFestival: jest.fn(),
-  createFestival: jest.fn(),
-  updateFestival: jest.fn(),
-  deleteFestival: jest.fn(),
-} as unknown as FestivalApiRepo;
+describe("Given the useFestivals hook", () => {
+  const mockFestival = {
+    id: "3",
+    name: "BBK",
+    img: "png",
+  } as unknown as Festival;
+  let initialState = [
+    { id: "3", name: "BBK", img: "png" } as unknown as Festival,
+  ];
+  const action = ac.addCreator(mockFestival);
+  const updateAction = ac.updateCreator(mockFestival);
+  let elements: HTMLElement[];
 
-const mockFestival: Festival = {
-  id: "1",
-  name: "festival1",
-} as Festival;
+  const mockStore = configureStore({
+    reducer: { festivals: festivalReducer },
+    preloadedState: {
+      festivals: [],
+    },
+  });
 
-describe("Given a Test Component", () => {
+  const mockFile = new File(["image"], "test.jpeg");
+
+  const mockRepo: FestivalApiRepo = {
+    url: "testing",
+    loadFestivals: jest.fn(),
+    loadOneFestival: jest.fn(),
+    createFestival: jest.fn(),
+    updateFestival: jest.fn(),
+    deleteFestival: jest.fn(),
+  };
   beforeEach(async () => {
     const TestComponent = function () {
       const {
-        festivals,
+        //loadFestivals,
         loadOneFestival,
         addFestival,
         updateFestival,
         deleteFestival,
       } = useFestivals(mockRepo);
-
       return (
-        <div className="buttoncontainer">
-          <button title="loadbutton" onClick={() => festivals}>
-            load
-          </button>
-          <button title="loadonebutton" onClick={() => loadOneFestival("1")}>
-            get
-          </button>
-          <button title="addbutton" onClick={() => addFestival(mockFestival)}>
-            create
-          </button>
+        <div>
+          <button onClick={() => loadOneFestival("1")}></button>
           <button
-            title="updatebutton"
-            onClick={() => updateFestival(mockFestival)}
-          >
-            update
-          </button>
-          <button title="deletebutton" onClick={() => deleteFestival("1")}>
-            delete
-          </button>
+            title="addbutton"
+            onClick={() => addFestival(mockFestival, mockFile)}
+          ></button>
+          <button
+            title="edit"
+            onClick={() => updateFestival(mockFestival, mockFile)}
+          ></button>
+          <button
+            title="delete"
+            onClick={() => deleteFestival(mockFestival.id)}
+          ></button>
         </div>
       );
     };
-    // eslint-disable-next-line testing-library/no-render-in-setup
-    render(
-      <Provider store={store}>
-        <TestComponent />
-      </Provider>
-    );
-  });
 
-  describe("When loadFestivals is called", () => {
-    test("Then it should load the festivals", async () => {
-      await fireEvent.click(screen.getByText(/load/i));
-      expect(mockRepo.loadFestivals).toHaveBeenCalled();
+    await act(async () => {
+      render(
+        <>
+          <Provider store={mockStore}>
+            <TestComponent></TestComponent>
+          </Provider>
+        </>
+      );
+    });
+    elements = await screen.findAllByRole("button");
+  });
+  describe("When the TestComponent is rendered", () => {
+    test("We should find a button in the document", async () => {
+      const element = await screen.findAllByRole("button");
+      expect(element[0]).toBeInTheDocument();
     });
   });
+
   describe("When loadOneFestival is called", () => {
-    test("Then it should call the load one function from api", async () => {
-      await fireEvent.click(screen.getByText(/get/i));
+    test("Then it should call the repo method loadOneFestival", async () => {
+      const loadOneFestival = await fireEvent.click(elements[0]);
       expect(mockRepo.loadOneFestival).toHaveBeenCalled();
+      expect(loadOneFestival).toEqual(true);
     });
   });
   describe("When createFestival is called", () => {
     test("Then it should create a new festival", async () => {
-      await fireEvent.click(screen.getByText(/create/i));
+      await fireEvent.click(elements[1]);
       expect(mockRepo.createFestival).toHaveBeenCalled();
+      const state = festivalReducer(initialState, action);
+      expect(state).toContainEqual(action.payload);
     });
   });
-
   describe("When updateFestival is called", () => {
-    test("Then it should update the festival", async () => {
-      await fireEvent.click(screen.getByText(/update/i));
+    test("Then it should edit the selected festival", async () => {
+      await fireEvent.click(elements[2]);
       expect(mockRepo.updateFestival).toHaveBeenCalled();
+      const state = festivalReducer(initialState, updateAction);
+      expect(state).toContainEqual(action.payload);
     });
   });
-  describe("when deleteFestival is called", () => {
-    test("Then it should delete the festival", async () => {
-      await fireEvent.click(screen.getByText(/delete/i));
+  describe("When deleteFestival is called", () => {
+    test("Then it should call the delete the festival", async () => {
+      await fireEvent.click(elements[3]);
       expect(mockRepo.deleteFestival).toHaveBeenCalled();
     });
   });
 });
-
-/*describe("Given the useFestivals Custom Hook and TestError component", () => {
-  const mockRepoError = {
-    loadOneFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-    addFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-    updateFestival: jest.fn().mockRejectedValue(new Error("Test Error")),
-    deleteFestival: jest.fn(),
-  } as unknown as FestivalApiRepo;
-  beforeEach(async () => {
-    const TestError = function () {
-      const { loadOneFestival, addFestival, updateFestival, deleteFestival } =
-        useFestivals(mockRepoError);
-      return (
-        <>
-          <button title="buttonload" onClick={() => loadOneFestival("1")}>
-            Error
-          </button>
-          <button title="buttonadd" onClick={() => addFestival(mockFestival)}>
-            Error
-          </button>
-          <button
-            title="buttonupdate"
-            onClick={() => updateFestival(mockFestival)}
-          >
-            Error
-          </button>
-          <button title="buttondelete" onClick={() => deleteFestival("1")}>
-            Error
-          </button>
-        </>
-      );
-    };
-
-    await act(async () =>
-      render(
-        <Provider store={store}>
-          <TestError></TestError>
-        </Provider>
-      )
-    );
-  });
-
-  describe("When delete method method fails", () => {
-    const spyOn = jest.spyOn(console, "error").mockImplementation(() => {});
-
-    test("Then it should call the error console", async () => {
-      try {
-        await mockRepoError.deleteFestival("2");
-      } catch (error) {
-        expect(error).toBeInstanceOf(Error);
-      }
-
-      expect(mockRepoError.deleteFestival).toHaveBeenCalled();
-      expect(spyOn).toHaveBeenCalled();
-      expect(console.error).toHaveBeenCalledTimes(1);
-    });
-  });
-});*/

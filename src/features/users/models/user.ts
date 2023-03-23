@@ -19,4 +19,5 @@ export type User = {
 
 export type ServerResp = {
   results: User[];
+  token: string;
 };
