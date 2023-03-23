@@ -31,7 +31,7 @@ export class UserApiRepo {
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
     const data = await resp.json();
-    //localStorage.removeItem("token");
+
     if (data.token) JSON.stringify(localStorage.setItem("token", data.token));
     return data;
   }
