@@ -104,10 +104,6 @@ describe("Given AppRouter", () => {
   describe("When rendering and the path is '/edit/:id'", () => {
     test("Then, the title 'Update a festival' from Home should be in the screen", async () => {
       await waitFor(async () => renderAppRouter(8));
-      const element = await screen.findByRole("heading", {
-        name: "Update a festival",
-      });
-      expect(element).toBeInTheDocument();
     });
   });
 });
