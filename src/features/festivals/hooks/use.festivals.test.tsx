@@ -42,13 +42,8 @@ describe("Given the useFestivals hook", () => {
   };
   beforeEach(async () => {
     const TestComponent = function () {
-      const {
-        //loadFestivals,
-        loadOneFestival,
-        addFestival,
-        updateFestival,
-        deleteFestival,
-      } = useFestivals(mockRepo);
+      const { loadOneFestival, addFestival, updateFestival, deleteFestival } =
+        useFestivals(mockRepo);
       return (
         <div>
           <button onClick={() => loadOneFestival("1")}></button>
