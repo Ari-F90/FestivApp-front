@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
-import { FestivalApiRepo } from "../../../features/festivals/services/festival.repo";
+import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 import { Card } from "../card/card";
 import styles from "./festivalList.module.scss";
 
