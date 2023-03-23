@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
-import { FestivalApiRepo } from "../../../features/festivals/services/festival.repo";
+import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 import styles from "./details.module.scss";
 
 export type CardProps = {
@@ -57,15 +57,13 @@ export default function Details() {
               <li>Created by: {festivalDetails?.owner.name}</li>
               <div className={styles.actions_buttons}>
                 <div>
-                  <Link to={`/edit/${festivalDetails?.id}`} relative="path">
+                  <Link to={`/edit/${festivalDetails?.id}`}>
                     <button>
-                      <span>
-                        <img
-                          className={styles.editbutton}
-                          src="../../../../../img/edit.png"
-                          alt="editbutton"
-                        ></img>
-                      </span>
+                      <img
+                        className={styles.editbutton}
+                        src="../../../../../img/edit.png"
+                        alt="editbutton"
+                      ></img>
                     </button>
                   </Link>
                 </div>
