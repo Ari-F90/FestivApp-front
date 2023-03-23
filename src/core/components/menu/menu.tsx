@@ -10,7 +10,6 @@ export const menuOptions: MenuOption[] = [
   { label: "Home", path: "/home" },
   { label: "About", path: "/about" },
   { label: "Festival list", path: "/festivals" },
-  { label: "My favorites", path: "/favorites" },
 ];
 
 type MenuProps = {
