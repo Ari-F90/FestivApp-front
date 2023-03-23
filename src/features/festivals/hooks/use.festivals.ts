@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { newImage } from "../../../core/components/firebase/firebase-user";
+import { newImage } from "../services/firebase/firebase-user";
 import { AppDispatch, RootState } from "../../../core/store/store";
 import { Festival } from "../models/festival";
-
 import * as ac from "../reducer/festivals.actions.creator";
-import { FestivalApiRepo } from "../services/festival.repo.js";
+import { FestivalApiRepo } from "../services/repository/festival.repo";
 
 export function useFestivals(repo: FestivalApiRepo) {
   const festivals = useSelector((state: RootState) => state.festivals);
