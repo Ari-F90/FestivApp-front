@@ -62,6 +62,10 @@ export class FestivalApiRepo {
     const url = this.url + "/" + id;
     const resp = await fetch(url, {
       method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     });
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
