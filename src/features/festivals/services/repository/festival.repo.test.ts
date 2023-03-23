@@ -1,4 +1,4 @@
-import { Festival } from "../models/festival";
+import { Festival } from "../../models/festival";
 import { FestivalApiRepo } from "./festival.repo";
 
 const mockFestivalRepo = new FestivalApiRepo();

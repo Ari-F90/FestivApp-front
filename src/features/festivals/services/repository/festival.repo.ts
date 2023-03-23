@@ -1,4 +1,4 @@
-import { Festival, FestivalServerResp } from "../models/festival";
+import { FestivalServerResp, Festival } from "../../models/festival";
 
 export class FestivalApiRepo {
   url: string;
