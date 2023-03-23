@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
-import { FestivalApiRepo } from "../../../features/festivals/services/festival.repo";
+import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 
 export default function Form() {
   const { id } = useParams();
@@ -33,7 +33,6 @@ export default function Form() {
 
     if (type === "add") {
       addFestival(newFestival, image);
-      console.log("add");
     } else {
       newFestival.id = festivalItem!.id;
       updateFestival(newFestival, image);
@@ -57,7 +56,6 @@ export default function Form() {
           type="file"
           name="image"
           id="image"
-          defaultValue={festivalItem?.image}
           required
           placeholder="Image"
         />
