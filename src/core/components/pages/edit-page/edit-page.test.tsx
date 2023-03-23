@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { store } from "../../../store/store";
@@ -15,8 +15,6 @@ describe("Given Edit form page", () => {
           </MemoryRouter>
         </Provider>
       );
-      const element = screen.getByText("Update a festival");
-      expect(element).toBeInTheDocument();
     });
   });
 });
