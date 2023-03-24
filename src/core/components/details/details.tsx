@@ -61,9 +61,9 @@ export default function Details() {
                     </button>
                   </Link>
                 </div>
-                <div>
+                <div onClick={handleDeleteButton}>
                   <Link to={"/festivals"}>
-                    <button onClick={handleDeleteButton}>
+                    <button>
                       <span>
                         <img
                           className={styles.deletebutton}
