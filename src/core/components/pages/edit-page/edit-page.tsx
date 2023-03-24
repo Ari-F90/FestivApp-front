@@ -8,7 +8,6 @@ export default function EditFormPage() {
         <h2 className={styles.editform__title}>Update a new festival</h2>
         <Form></Form>
       </section>
-      <button type="submit">UPDATE</button>
     </>
   );
 }

@@ -34,6 +34,12 @@ export function FestivalList() {
           <Card festival={item} key={item.id}></Card>
         ))}
       </div>
+      <button>
+        <img src="../../../../img/prev.png" alt="prev-page"></img>
+      </button>
+      <button>
+        <img src="../../../../img/next.png" alt="next-page"></img>
+      </button>
     </>
   );
 }

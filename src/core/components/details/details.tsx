@@ -12,12 +12,14 @@ export type CardProps = {
 export default function Details() {
   const { id } = useParams();
   const repo = useMemo(() => new FestivalApiRepo(), []);
-  const { festivals } = useFestivals(repo);
+  const { festivals, deleteFestival } = useFestivals(repo);
 
-  /*Const handleDeleteButton = () => {
-    deleteFestival(festivalId);
-  };*/
   const festivalDetails = festivals.find((item) => item.id === id);
+
+  const handleDeleteButton = () => {
+    deleteFestival(festivalDetails!.id);
+  };
+
   return (
     <>
       <div className={styles.details}>
@@ -38,15 +40,7 @@ export default function Details() {
                     {festivalDetails?.name}
                   </span>
                 </div>
-                <div>
-                  <span>
-                    <img
-                      className={styles.favnot}
-                      src="../../../../../img/favnot.png"
-                      alt="favorite icon"
-                    ></img>
-                  </span>
-                </div>
+                <div></div>
               </div>
               <li></li>
               <li>Type of music: {festivalDetails?.musicType}</li>
@@ -67,14 +61,18 @@ export default function Details() {
                     </button>
                   </Link>
                 </div>
-                <div>
-                  <span>
-                    <img
-                      className={styles.deletebutton}
-                      src="../../../../../img/delete.png"
-                      alt="deletebutton"
-                    ></img>
-                  </span>
+                <div onClick={handleDeleteButton}>
+                  <Link to={"/festivals"}>
+                    <button>
+                      <span>
+                        <img
+                          className={styles.deletebutton}
+                          src="../../../../../img/delete.png"
+                          alt="deletebutton"
+                        ></img>
+                      </span>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </ul>

@@ -15,7 +15,6 @@ describe("Given AppRouter", () => {
             "/home",
             "/about",
             "/festivals",
-            "/favorites",
             "/register",
             "/login",
             "/details/:id",
@@ -55,18 +54,10 @@ describe("Given AppRouter", () => {
       expect(element).toBeInTheDocument();
     });
   });
-  describe("When rendering and the path is '/favorites'", () => {
-    test("Then, the title 'My favorites' should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(3));
-      const element = await screen.findByRole("heading", {
-        name: "My favorites",
-      });
-      expect(element).toBeInTheDocument();
-    });
-  });
+
   describe("When rendering and the path is '/register'", () => {
     test("Then, the title 'Register' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(4));
+      await waitFor(async () => renderAppRouter(3));
       const element = await screen.findByRole("heading", {
         name: "Register",
       });
@@ -76,7 +67,7 @@ describe("Given AppRouter", () => {
 
   describe("When rendering and the path is '/login'", () => {
     test("Then, the title 'Login' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(5));
+      await waitFor(async () => renderAppRouter(4));
       const element = await screen.findByRole("heading", {
         name: "Login",
       });
@@ -85,7 +76,7 @@ describe("Given AppRouter", () => {
   });
   describe("When rendering and the path is '/details/:id'", () => {
     test("Then, the title 'Details' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(6));
+      await waitFor(async () => renderAppRouter(5));
       const element = await screen.findByRole("heading", {
         name: "Details",
       });
@@ -94,7 +85,7 @@ describe("Given AppRouter", () => {
   });
   describe("When rendering and the path is '/add'", () => {
     test("Then, the title 'Add a new festival' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(7));
+      await waitFor(async () => renderAppRouter(6));
       const element = await screen.findByRole("heading", {
         name: "Add a new festival",
       });
@@ -103,7 +94,7 @@ describe("Given AppRouter", () => {
   });
   describe("When rendering and the path is '/edit/:id'", () => {
     test("Then, the title 'Update a festival' from Home should be in the screen", async () => {
-      await waitFor(async () => renderAppRouter(8));
+      await waitFor(async () => renderAppRouter(7));
     });
   });
 });
