@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import ReactRouter from "react-router";
+
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 
@@ -84,14 +84,4 @@ describe("Given Details page component", () => {
       expect(useFestivals(mockRepo).deleteFestival).toHaveBeenCalled();
     });
   });
-  /*describe("When it is called the delete method", () => {
-    test("Then the chosen festival will be deleted from the initial state", async () => {
-      jest.fn().mockResolvedValue([
-        {
-          id: "2",
-          name: "festival2",
-        },
-      ]);
-    });
-  });*/
 });
