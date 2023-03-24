@@ -76,7 +76,6 @@ describe("Given Details page component", () => {
   });
   describe("When we call the delete method", () => {
     test("Then the selected festival will be deleted", async () => {
-      //jest.spyOn(ReactRouter, "useParams").mockReturnValue({ id: "1" });
       const elements = screen.getAllByRole("button");
       await act(async () => await userEvent.click(elements[1]));
 
