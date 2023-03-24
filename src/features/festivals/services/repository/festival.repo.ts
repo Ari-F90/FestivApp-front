@@ -6,7 +6,9 @@ export class FestivalApiRepo {
     this.url = "http://localhost:5000/festivals";
   }
   async loadFestivals(): Promise<FestivalServerResp> {
-    const resp = await fetch(this.url);
+    const resp = await fetch(
+      "http://localhost:5000/festivals?limit=2&after_id=2"
+    );
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
     const data = await resp.json();
