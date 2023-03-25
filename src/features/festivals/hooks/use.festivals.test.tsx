@@ -34,7 +34,7 @@ describe("Given the useFestivals hook", () => {
 
   const mockRepo: FestivalApiRepo = {
     url: "testing",
-
+    loadFestivals: jest.fn(),
     loadOneFestival: jest.fn(),
     createFestival: jest.fn(),
     updateFestival: jest.fn(),
@@ -42,10 +42,16 @@ describe("Given the useFestivals hook", () => {
   } as unknown as FestivalApiRepo;
   beforeEach(async () => {
     const TestComponent = function () {
-      const { loadOneFestival, addFestival, updateFestival, deleteFestival } =
-        useFestivals(mockRepo);
+      const {
+        loadFestivals,
+        loadOneFestival,
+        addFestival,
+        updateFestival,
+        deleteFestival,
+      } = useFestivals(mockRepo);
       return (
         <div>
+          <button onClick={() => loadFestivals()}></button>
           <button onClick={() => loadOneFestival("1")}></button>
           <button
             title="addbutton"
@@ -81,16 +87,23 @@ describe("Given the useFestivals hook", () => {
     });
   });
 
+  describe("When loadFestivals is called", () => {
+    test("Then it should call the repo method loadFestivals", async () => {
+      const loadFestivals = await fireEvent.click(elements[0]);
+      expect(mockRepo.loadFestivals).toHaveBeenCalled();
+      expect(loadFestivals).toEqual(true);
+    });
+  });
   describe("When loadOneFestival is called", () => {
     test("Then it should call the repo method loadOneFestival", async () => {
-      const loadOneFestival = await fireEvent.click(elements[0]);
+      const loadOneFestival = await fireEvent.click(elements[1]);
       expect(mockRepo.loadOneFestival).toHaveBeenCalled();
       expect(loadOneFestival).toEqual(true);
     });
   });
   describe("When createFestival is called", () => {
     test("Then it should create a new festival", async () => {
-      await fireEvent.click(elements[1]);
+      await fireEvent.click(elements[2]);
       expect(mockRepo.createFestival).toHaveBeenCalled();
       const state = festivalReducer(initialState, action);
       expect(state).toContainEqual(action.payload);
@@ -98,7 +111,7 @@ describe("Given the useFestivals hook", () => {
   });
   describe("When updateFestival is called", () => {
     test("Then it should edit the selected festival", async () => {
-      await fireEvent.click(elements[2]);
+      await fireEvent.click(elements[3]);
       expect(mockRepo.updateFestival).toHaveBeenCalled();
       const state = festivalReducer(initialState, updateAction);
       expect(state).toContainEqual(action.payload);
@@ -106,7 +119,7 @@ describe("Given the useFestivals hook", () => {
   });
   describe("When deleteFestival is called", () => {
     test("Then it should call the delete the festival", async () => {
-      await fireEvent.click(elements[3]);
+      await fireEvent.click(elements[4]);
       expect(mockRepo.deleteFestival).toHaveBeenCalled();
     });
   });

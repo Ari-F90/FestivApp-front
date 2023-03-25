@@ -16,7 +16,7 @@ export function useFestivals(repo: FestivalApiRepo) {
         const data = await repo.loadFestivals(pageChange);
         dispatch(ac.loadCreator(data.results));
       } catch (error) {
-        console.error((error as Error).message);
+        // console.error((error as Error).message);
       }
     },
 
