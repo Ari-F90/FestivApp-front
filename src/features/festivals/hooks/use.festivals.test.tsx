@@ -34,12 +34,12 @@ describe("Given the useFestivals hook", () => {
 
   const mockRepo: FestivalApiRepo = {
     url: "testing",
-    loadFestivals: jest.fn(),
+
     loadOneFestival: jest.fn(),
     createFestival: jest.fn(),
     updateFestival: jest.fn(),
     deleteFestival: jest.fn(),
-  };
+  } as unknown as FestivalApiRepo;
   beforeEach(async () => {
     const TestComponent = function () {
       const { loadOneFestival, addFestival, updateFestival, deleteFestival } =
