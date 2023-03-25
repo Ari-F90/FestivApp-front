@@ -1,11 +1,12 @@
 import { useMemo, SyntheticEvent } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 
 export default function Form() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const repo = useMemo(() => new FestivalApiRepo(), []);
 
@@ -35,7 +36,8 @@ export default function Form() {
       addFestival(newFestival, image);
     } else {
       newFestival.id = festivalItem!.id;
-      updateFestival(newFestival, image);
+      updateFestival(newFestival, image, festivalItem!.image);
+      navigate(`/details/${festivalItem!.id}`);
     }
 
     formData.reset();
@@ -52,13 +54,7 @@ export default function Form() {
           required
           placeholder="Name"
         />
-        <input
-          type="file"
-          name="image"
-          id="image"
-          required
-          placeholder="Image"
-        />
+        <input type="file" name="image" id="image" placeholder="Image" />
 
         <input
           type="text"
