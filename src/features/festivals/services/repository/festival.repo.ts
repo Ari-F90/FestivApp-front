@@ -2,15 +2,19 @@ import { FestivalServerResp, Festival } from "../../models/festival";
 
 export class FestivalApiRepo {
   url: string;
+  actualPage: number;
   constructor() {
     this.url = "http://localhost:5000/festivals";
+    this.actualPage = 1;
   }
-  async loadFestivals(): Promise<FestivalServerResp> {
-    const resp = await fetch(
-      "http://localhost:5000/festivals?limit=2&after_id=2"
-    );
+  async loadFestivals(pageChange: number): Promise<FestivalServerResp> {
+    this.actualPage = this.actualPage + pageChange;
+    if (this.actualPage === 0 || pageChange === 0) this.actualPage = 1;
+    const pageString = this.actualPage.toString();
+    const urlPage = this.url + "/?page=" + pageString;
+    const resp = await fetch(urlPage);
     if (!resp.ok)
-      throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
+      throw new Error("Error Http: " + resp.status + "/" + resp.statusText);
     const data = await resp.json();
     return data;
   }
