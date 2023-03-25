@@ -8,15 +8,15 @@ const FestivalListPage = lazy(
   () => import("../pages/festivalList-page/festivalList-page")
 );
 
-const RegisterPage = lazy(() => import("../../components/register/register"));
-const LoginPage = lazy(() => import("../../components/login/login"));
+const RegisterPage = lazy(() => import("../pages/register-page/register-page"));
+const LoginPage = lazy(() => import("../pages/login-page/login-page"));
 const Details = lazy(() => import("../../../core/components/details/details"));
 const AddFormPage = lazy(() => import("../pages/add-page/add-page"));
 const EditFormPage = lazy(() => import("../pages/edit-page/edit-page"));
 
 export const routesOptions: MenuOption[] = [
-  { label: "Register", path: "/register" },
-  { label: "Login", path: "/login" },
+  { label: "Register", path: "/register-page" },
+  { label: "Login", path: "/login-page" },
   { label: "Details", path: "/details/:id" },
   { label: "Add", path: "/add" },
   { label: "Edit", path: "/edit/:id" },

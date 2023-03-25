@@ -15,8 +15,8 @@ describe("Given AppRouter", () => {
             "/home",
             "/about",
             "/festivals",
-            "/register",
-            "/login",
+            "/register-page",
+            "/login-page",
             "/details/:id",
             "/add",
             "/edit/:id",
@@ -55,7 +55,7 @@ describe("Given AppRouter", () => {
     });
   });
 
-  describe("When rendering and the path is '/register'", () => {
+  describe("When rendering and the path is '/register-page'", () => {
     test("Then, the title 'Register' from Home should be in the screen", async () => {
       await waitFor(async () => renderAppRouter(3));
       const element = await screen.findByRole("heading", {
@@ -65,7 +65,7 @@ describe("Given AppRouter", () => {
     });
   });
 
-  describe("When rendering and the path is '/login'", () => {
+  describe("When rendering and the path is '/login-page'", () => {
     test("Then, the title 'Login' from Home should be in the screen", async () => {
       await waitFor(async () => renderAppRouter(4));
       const element = await screen.findByRole("heading", {
