@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { newImage } from "../services/firebase/firebase-user";
 import { AppDispatch, RootState } from "../../../core/store/store";
@@ -10,17 +10,18 @@ export function useFestivals(repo: FestivalApiRepo) {
   const festivals = useSelector((state: RootState) => state.festivals);
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const loadFestivals = async () => {
+  const loadFestivals = useCallback(
+    async (pageChange: number = 0) => {
       try {
-        const data = await repo.loadFestivals();
+        const data = await repo.loadFestivals(pageChange);
         dispatch(ac.loadCreator(data.results));
       } catch (error) {
         console.error((error as Error).message);
       }
-    };
-    loadFestivals();
-  }, [dispatch, repo]);
+    },
+
+    [dispatch, repo]
+  );
 
   const loadOneFestival = async (id: Festival["id"]) => {
     try {
@@ -42,9 +43,13 @@ export function useFestivals(repo: FestivalApiRepo) {
     }
   };
 
-  const updateFestival = async (festival: Partial<Festival>, file: File) => {
+  const updateFestival = async (
+    festival: Partial<Festival>,
+    file: File,
+    oldImage: string | undefined
+  ) => {
     try {
-      await newImage(festival, file);
+      file ? await newImage(festival, file) : (festival.image = oldImage);
       const finalFestival = await repo.updateFestival(festival);
       dispatch(ac.updateCreator(finalFestival.results[0]));
     } catch (error) {
@@ -63,6 +68,7 @@ export function useFestivals(repo: FestivalApiRepo) {
 
   return {
     festivals,
+    loadFestivals,
     loadOneFestival,
     addFestival,
     updateFestival,

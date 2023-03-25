@@ -53,7 +53,7 @@ describe("Given the useFestivals hook", () => {
           ></button>
           <button
             title="edit"
-            onClick={() => updateFestival(mockFestival, mockFile)}
+            onClick={() => updateFestival(mockFestival, mockFile, "image")}
           ></button>
           <button
             title="delete"
