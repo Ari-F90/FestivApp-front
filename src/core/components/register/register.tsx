@@ -3,6 +3,7 @@ import { useUsers } from "../../../features/users/hooks/use.users";
 import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 import { User } from "../../../features/users/models/user";
 import styles from "./register.module.scss";
+
 export default function Register() {
   const repo = useMemo(() => new UserApiRepo(), []);
   const { registerUser } = useUsers(repo);
@@ -23,34 +24,51 @@ export default function Register() {
     formData.reset();
   };
   return (
-    <div>
-      <h1>Register</h1>
+    <div className={styles.register}>
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          placeholder="Password"
-        />
-        <input type="text" name="name" id="name" required placeholder="Name" />
-        <input
-          type="text"
-          name="surname"
-          id="surname"
-          required
-          placeholder="Surname"
-        />
-        <button className={styles.buttonregister} type="submit">
-          REGISTER
-        </button>
+        <div className={styles.formcontainer}>
+          <div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              placeholder="Name"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="surname"
+              id="surname"
+              required
+              placeholder="Surname"
+            />
+          </div>
+          <div>
+            <button className={styles.buttonregister} type="submit">
+              REGISTER
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
