@@ -8,7 +8,7 @@ export default function HomePage() {
         <h2 className={styles.homepage__title2}> Get ready</h2>
       </div>
       <div className={styles.homepage__buttons}>
-        <Link to={"/register"}>
+        <Link to={"/register-page"}>
           <button
             className={styles.homepage__buttons__registerhome}
             type="button"
@@ -17,7 +17,7 @@ export default function HomePage() {
           </button>
         </Link>
 
-        <Link to={"/login"}>
+        <Link to={"/login-page"}>
           <button className={styles.homepage__buttons__loginhome} type="button">
             LOGIN
           </button>
