@@ -1,0 +1,15 @@
+.loginpage {
+  background-color: black;
+  height: 100vh;
+  font-family: "Nunito Sans", sans-serif;
+
+  &__title {
+    font-size: 2.5rem;
+    text-align: center;
+    padding-top: 6rem;
+    color: white;
+    border-bottom: 1px solid rgb(215, 51, 141);
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}

@@ -23,14 +23,13 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-const mockRepo: FestivalApiRepo = {
+const mockRepo = {
   url: "testing",
-  loadFestivals: jest.fn(),
   loadOneFestival: jest.fn(),
   createFestival: jest.fn(),
   updateFestival: jest.fn(),
   deleteFestival: jest.fn(),
-};
+} as unknown as FestivalApiRepo;
 
 const mockParams = { id: "3" };
 describe("Given Details page component", () => {

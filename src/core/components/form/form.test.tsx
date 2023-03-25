@@ -18,14 +18,13 @@ jest.mock("react-router-dom", () => ({
 }));
 jest.mock("../../../features/festivals/hooks/use.festivals");
 
-const mockRepo: FestivalApiRepo = {
+const mockRepo = {
   url: "testing",
-  loadFestivals: jest.fn(),
   loadOneFestival: jest.fn(),
   createFestival: jest.fn(),
   updateFestival: jest.fn(),
   deleteFestival: jest.fn(),
-};
+} as unknown as FestivalApiRepo;
 describe("Given the Form component", () => {
   let elements: HTMLElement[];
 

@@ -1,10 +1,12 @@
 import Login from "../../login/login";
-
+import styles from "./login-page.module.scss";
 export default function LoginPage() {
   return (
     <>
-      <h2>Login</h2>
-      <Login></Login>
+      <section className={styles.loginpage}>
+        <h2 className={styles.loginpage__title}>Login</h2>
+        <Login></Login>
+      </section>
     </>
   );
 }

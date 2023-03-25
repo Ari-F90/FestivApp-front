@@ -13,7 +13,24 @@
 }
 
 .addbutton {
-  margin-top: 5rem;
+  margin-top: 2rem;
   width: 3rem;
   height: 3rem;
+}
+
+.containerbuttons {
+  display: flex;
+  justify-content: center;
+}
+.prevbutton {
+  width: 3rem;
+  height: 3rem;
+}
+.nextbutton {
+  width: 3rem;
+  height: 3rem;
+}
+img {
+  width: 3rem;
+  height: 3 rem;
 }

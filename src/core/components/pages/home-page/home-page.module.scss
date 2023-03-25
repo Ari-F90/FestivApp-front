@@ -2,6 +2,7 @@
   background-color: black;
   height: 100vh;
   font-family: "Nunito Sans", sans-serif;
+
   &__title1 {
     font-size: 2.5rem;
     text-align: center;
@@ -16,6 +17,9 @@
   &__image {
     height: 83%;
     background-image: url(../../../../../public/img/homepage-img.png);
+    @media screen and (min-width: 400px) {
+      background: url(../../../../../public/img/homepagedesktop.png);
+    }
   }
   &__buttons {
     display: flex;

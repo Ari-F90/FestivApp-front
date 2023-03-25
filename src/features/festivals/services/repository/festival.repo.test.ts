@@ -12,7 +12,7 @@ describe("Given the festival repo", () => {
       });
 
       expect(mockFestivalRepo).toBeInstanceOf(FestivalApiRepo);
-      const loadAll = await mockFestivalRepo.loadFestivals();
+      const loadAll = await mockFestivalRepo.loadFestivals(2);
       expect(loadAll).toEqual([{ name: "festival" }]);
     });
   });
@@ -85,7 +85,7 @@ describe("Given the festival repo", () => {
   describe("When loadFestivals method fails", () => {
     test("Then it should throw an error", async () => {
       global.fetch = jest.fn().mockResolvedValue("Error found");
-      const loadAll = mockFestivalRepo.loadFestivals();
+      const loadAll = mockFestivalRepo.loadFestivals(2);
       await expect(loadAll).rejects.toThrow();
     });
   });

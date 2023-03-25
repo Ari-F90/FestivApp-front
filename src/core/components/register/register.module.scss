@@ -1,4 +1,33 @@
 .buttonregister {
-  background-color: rgb(215, 51, 141);
   color: white;
+  background-color: rgb(215, 51, 141);
+  border-radius: 1rem;
+  padding: 0.4rem;
+  border-color: rgb(215, 51, 141);
+  width: 7rem;
+  height: 2.3rem;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: bold;
+  margin-top: 3rem;
+}
+.formcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6rem;
+  gap: 2.5rem;
+}
+
+input {
+  background-color: rgb(102, 24, 67);
+  height: 2rem;
+  border: transparent;
+  border-radius: 0.5rem;
+  width: 10rem;
+}
+input::placeholder {
+  color: white;
+  font-family: "Nunito Sans", sans-serif;
+  padding-left: 1rem;
 }
