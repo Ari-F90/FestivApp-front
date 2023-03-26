@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
@@ -63,7 +64,10 @@ export default function Details() {
                 </div>
                 <div
                   className={styles.deletecontainer}
-                  onClick={handleDeleteButton}
+                  onClick={() => {
+                    handleDeleteButton();
+                    Swal.fire("Festival deleted");
+                  }}
                 >
                   <Link to={"/festivals"}>
                     <button>
