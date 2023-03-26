@@ -6,6 +6,7 @@
 }
 
 .menuburger:hover {
+  cursor: pointer;
   .menupaths {
     display: block;
     color: white;
@@ -39,6 +40,7 @@ a:link {
   margin-top: 1.8rem;
   margin-right: 2rem;
   text-align: center;
+  font-size: 1.2rem;
 }
 .container__flex {
   display: flex;

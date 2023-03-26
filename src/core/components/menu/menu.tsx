@@ -31,10 +31,10 @@ export const Menu = ({ options }: MenuProps) => {
       <div className={styles.menucontainer}>
         {isLogging ? (
           <>
+            <p className={styles.welcome}>Welcome {users.userLogged.name}!</p>
             <div>
               <Logout></Logout>
             </div>
-            <p className={styles.welcome}>Welcome {users.userLogged.name}!</p>
           </>
         ) : (
           <>
