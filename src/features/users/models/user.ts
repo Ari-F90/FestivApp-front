@@ -6,6 +6,7 @@ export type ProtoUser = {
   name: string;
   surname: string;
   favoriteFestival: Festival[];
+  token?: string;
 };
 
 export type User = {
@@ -15,6 +16,7 @@ export type User = {
   name: string;
   surname: string;
   favoriteFestival: Festival[];
+  token?: string;
 };
 
 export type ServerResp = {

@@ -4,13 +4,13 @@ import { User } from "../models/user";
 export type State = {
   userLogged: User;
   users: User[];
-  token: string | null;
+  user: User;
 };
 
 const initialState: State = {
   userLogged: {} as User,
   users: [],
-  token: null,
+  user: {} as User,
 };
 
 export const userSlice = createSlice({
@@ -25,7 +25,7 @@ export const userSlice = createSlice({
       state.userLogged = action.payload;
     },
     logout(state) {
-      state.users = [];
+      state.userLogged = {} as User;
     },
   },
 });
