@@ -10,7 +10,7 @@ const mockUser = {
 const initialState: State = {
   userLogged: {} as User,
   users: [],
-  token: null,
+  user: {} as User,
 };
 
 describe("Given the userSlice", () => {

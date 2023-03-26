@@ -5,11 +5,12 @@ import { AppDispatch, RootState } from "../../../core/store/store";
 import { Festival } from "../models/festival";
 import * as ac from "../reducer/festivals.actions.creator";
 import { FestivalApiRepo } from "../services/repository/festival.repo";
+import { useNavigate } from "react-router-dom";
 
 export function useFestivals(repo: FestivalApiRepo) {
   const festivals = useSelector((state: RootState) => state.festivals);
   const dispatch = useDispatch<AppDispatch>();
-
+  const navigate = useNavigate();
   const loadFestivals = useCallback(
     async (pageChange: number = 0) => {
       try {
@@ -37,6 +38,7 @@ export function useFestivals(repo: FestivalApiRepo) {
       await newImage(festival, file);
 
       const finalFestival = await repo.createFestival(festival);
+      navigate("/festivals");
       dispatch(ac.addCreator(finalFestival.results[0]));
     } catch (error) {
       console.error((error as Error).message);
@@ -51,6 +53,7 @@ export function useFestivals(repo: FestivalApiRepo) {
     try {
       file ? await newImage(festival, file) : (festival.image = oldImage);
       const finalFestival = await repo.updateFestival(festival);
+
       dispatch(ac.updateCreator(finalFestival.results[0]));
     } catch (error) {
       console.error((error as Error).message);
