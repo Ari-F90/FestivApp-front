@@ -33,9 +33,9 @@ export function FestivalList() {
             <option value="All">All</option>
             <option value="indie">Indie</option>
             <option value="rock">Rock</option>
-            <option value="heavy metal">Heavy metal</option>
+            <option value="heavy">Heavy metal</option>
             <option value="pop">Pop</option>
-            <option value="electronic">Electronic</option>
+            <option value="electronic">Pop</option>
           </select>
         </div>
         <div className={styles.festivals_black}>
