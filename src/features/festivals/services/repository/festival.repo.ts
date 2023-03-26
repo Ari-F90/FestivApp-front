@@ -25,7 +25,7 @@ export class FestivalApiRepo {
     const resp = await fetch(url);
 
     if (!resp.ok)
-      throw new Error(`Error http: ${resp.status} ${resp.statusText}`);
+      throw new Error("Error Http: " + resp.status + resp.statusText);
 
     const data = await resp.json();
     return data;
@@ -35,7 +35,7 @@ export class FestivalApiRepo {
     const url = this.url + "/" + id;
     const resp = await fetch(url);
     if (!resp.ok)
-      throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
+      throw new Error("Error Http: " + resp.status + "/ " + resp.statusText);
     const data = await resp.json();
 
     return data;
