@@ -24,6 +24,15 @@ export function useFestivals(repo: FestivalApiRepo) {
     [dispatch, repo]
   );
 
+  const loadByMusic = async (filter: Festival["musicType"]) => {
+    try {
+      const data = await repo.loadByMusic(filter);
+      dispatch(ac.loadByMusicCreator(data.results));
+    } catch (error) {
+      console.error((error as Error).message);
+    }
+  };
+
   const loadOneFestival = async (id: Festival["id"]) => {
     try {
       const data = await repo.loadOneFestival(id);
@@ -72,6 +81,7 @@ export function useFestivals(repo: FestivalApiRepo) {
   return {
     festivals,
     loadFestivals,
+    loadByMusic,
     loadOneFestival,
     addFestival,
     updateFestival,
