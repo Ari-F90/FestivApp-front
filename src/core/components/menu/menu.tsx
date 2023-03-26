@@ -48,15 +48,19 @@ export const Menu = ({ options }: MenuProps) => {
               src="../img/burger.png"
               alt="Burger menu logo"
             ></img>
-            <ul className={styles.menupaths}>
-              {options.map((item) => (
-                <li key={item.label}>
-                  <Link to={item.path} className="menu-item">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className={styles.container__flex}>
+              <ul className={styles.menupaths}>
+                {options.map((item) => (
+                  <div>
+                    <li key={item.label}>
+                      <Link to={item.path} className="menu-item">
+                        {item.label}
+                      </Link>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
           </nav>
         </div>
       </div>
