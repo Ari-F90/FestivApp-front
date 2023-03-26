@@ -47,6 +47,7 @@ export default function Form() {
     <form action="" onSubmit={handleSubmit}>
       <div className={styles.formcontainer}>
         <input
+          className={styles.inputform}
           type="text"
           name="name"
           id="name"
@@ -54,9 +55,16 @@ export default function Form() {
           required
           placeholder="Name"
         />
-        <input type="file" name="image" id="image" placeholder="Image" />
+        <input
+          className={styles.inputformfile}
+          type="file"
+          name="image"
+          id="image"
+          placeholder="Image"
+        />
 
         <input
+          className={styles.inputform}
           type="text"
           name="musicType"
           id="musicType"
@@ -65,6 +73,7 @@ export default function Form() {
           placeholder="Type of music"
         />
         <input
+          className={styles.inputform}
           type="text"
           name="city"
           id="city"
@@ -73,6 +82,7 @@ export default function Form() {
           placeholder="City"
         />
         <input
+          className={styles.inputform}
           type="text"
           name="country"
           id="country"
@@ -81,6 +91,7 @@ export default function Form() {
           placeholder="Country"
         />
         <input
+          className={styles.inputform}
           type="text"
           name="dates"
           id="dates"
@@ -89,6 +100,7 @@ export default function Form() {
           placeholder="Dates"
         />
         <input
+          className={styles.inputform}
           type="text"
           name="capacity"
           id="capacity"
@@ -96,7 +108,9 @@ export default function Form() {
           required
           placeholder="Capacity"
         />
-        <button type="submit">SAVE</button>
+        <button className={styles.buttonform} type="submit">
+          SAVE
+        </button>
       </div>
     </form>
   );
