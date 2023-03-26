@@ -21,3 +21,17 @@
   margin-top: 1.5rem;
   margin-right: 1.5rem;
 }
+
+.menucontainer {
+  display: flex;
+  justify-content: flex-end;
+}
+.hidden {
+  background-color: black;
+}
+.welcome {
+  font-family: "Nunito Sans", sans-serif;
+  margin-top: 1.8rem;
+  margin-right: 2rem;
+  text-align: center;
+}
