@@ -24,8 +24,8 @@ export default function Details() {
     <>
       <div className={styles.details}>
         <h2 className={styles.details__title}>Details</h2>
-        <span className={styles.details__row}>
-          <span className={styles.details__card}>
+        <div className={styles.details__row}>
+          <div className={styles.details__card}>
             <div className={styles.details__imgcontainer}>
               <img
                 src={festivalDetails?.image}
@@ -50,7 +50,7 @@ export default function Details() {
               <li>Capacity: {festivalDetails?.capacity} people</li>
               <li>Created by: {festivalDetails?.owner.name}</li>
               <div className={styles.actions_buttons}>
-                <div>
+                <div className={styles.editcontainer}>
                   <Link to={`/edit/${festivalDetails?.id}`}>
                     <button>
                       <img
@@ -61,7 +61,10 @@ export default function Details() {
                     </button>
                   </Link>
                 </div>
-                <div onClick={handleDeleteButton}>
+                <div
+                  className={styles.deletecontainer}
+                  onClick={handleDeleteButton}
+                >
                   <Link to={"/festivals"}>
                     <button>
                       <span>
@@ -76,8 +79,8 @@ export default function Details() {
                 </div>
               </div>
             </ul>
-          </span>
-        </span>
+          </div>
+        </div>
 
         <div className={styles.button_container}>
           <div className={styles.button_container_flex}>
