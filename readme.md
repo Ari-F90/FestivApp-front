@@ -60,4 +60,5 @@ Some potential future enhancements to the app could include:
   https://ariadna-frias-final-project-front.netlify.app/
 - Sonar:
   https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Ariadna-Frias-Final-Project-back-202301-mad
+
   https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Ariadna-Frias-Final-Project-front-202301-mad
