@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
@@ -13,12 +13,15 @@ import { FestivalList } from "./festivalList";
 
 jest.mock("../../../features/festivals/hooks/use.festivals");
 jest.mock("../card/card");
+
 const mockRepo = {
   url: "testing",
+  loadFestivals: jest.fn(),
   loadOneFestival: jest.fn(),
   createFestival: jest.fn(),
   updateFestival: jest.fn(),
   deleteFestival: jest.fn(),
+  loadByMusic: jest.fn(),
 } as unknown as FestivalApiRepo;
 describe("Given Festival List component", () => {
   beforeEach(async () => {
@@ -27,13 +30,16 @@ describe("Given Festival List component", () => {
         {
           id: "1",
           name: "test1",
+          musicType: "rock",
         } as Festival,
         {
           id: "2",
           name: "test2",
+          musicType: "indie",
         } as Festival,
       ],
       loadFestivals: jest.fn(),
+      loadByMusic: jest.fn(),
     });
 
     await act(async () => {

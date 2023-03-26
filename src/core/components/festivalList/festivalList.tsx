@@ -11,7 +11,7 @@ import styles from "./festivalList.module.scss";
 
 export function FestivalList() {
   const repo = useMemo(() => new FestivalApiRepo(), []);
-  const { festivals, loadFestivals } = useFestivals(repo);
+  const { festivals, loadFestivals, loadByMusic } = useFestivals(repo);
 
   useEffect(() => {
     loadFestivals();
@@ -21,6 +21,23 @@ export function FestivalList() {
   return (
     <>
       <div className={styles.festivals_flex}>
+        <div>
+          <select
+            onChange={async (element) => {
+              const musicFiltered = element.target.value;
+              musicFiltered === "All"
+                ? loadFestivals()
+                : loadByMusic(musicFiltered);
+            }}
+          >
+            <option value="All">All</option>
+            <option value="indie">Indie</option>
+            <option value="rock">Rock</option>
+            <option value="heavy metal">Heavy metal</option>
+            <option value="pop">Pop</option>
+            <option value="electronic">Electronic</option>
+          </select>
+        </div>
         <div className={styles.festivals_black}>
           <Link to={"/add"}>
             <button className={styles.addbutton}>
