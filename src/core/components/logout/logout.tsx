@@ -8,7 +8,7 @@ export default function Logout() {
   const repo = useMemo(() => new UserApiRepo(), []);
 
   const { logoutUser } = useUsers(repo);
-  const dispatch = useDispatch();
+
   return (
     <button className={styles.logout} onClick={logoutUser}>
       <img
