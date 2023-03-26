@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, act, fireEvent } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
@@ -62,7 +62,7 @@ describe("Given Festival List component", () => {
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
       });
     });
-    test("Then it should appear the 'next page' buttpn", async () => {
+    test("Then it should appear the 'next page' button", async () => {
       await act(async () => {
         const buttons = await screen.findAllByRole("button");
         expect(buttons[1]).toBeInTheDocument();
