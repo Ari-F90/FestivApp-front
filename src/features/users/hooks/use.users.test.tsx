@@ -6,11 +6,17 @@ import { User } from "../models/user";
 import { useUsers } from "./use.users";
 import { UserApiRepo } from "../services/user.api.repo";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 
 let mockRepo: UserApiRepo = {
   register: jest.fn(),
   login: jest.fn(),
 } as unknown as UserApiRepo;
+
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as any),
+  useNavigate: () => ({ navigate: jest.fn().mockImplementation(() => ({})) }),
+}));
 
 describe("Given the useUsers Hook", () => {
   beforeEach(async () => {
@@ -33,7 +39,9 @@ describe("Given the useUsers Hook", () => {
     await act(async () =>
       render(
         <Provider store={store}>
-          <TestComponent></TestComponent>
+          <MemoryRouter>
+            <TestComponent></TestComponent>
+          </MemoryRouter>
         </Provider>
       )
     );
