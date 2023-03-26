@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { store } from "../../store/store";
 import Register from "./register";
 
@@ -10,7 +11,9 @@ describe("Given the Register component", () => {
     // eslint-disable-next-line testing-library/no-render-in-setup
     render(
       <Provider store={store}>
-        <Register></Register>
+        <MemoryRouter>
+          <Register></Register>
+        </MemoryRouter>
       </Provider>
     );
 
