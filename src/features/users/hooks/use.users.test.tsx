@@ -10,7 +10,6 @@ import { MemoryRouter } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 
 import { register, State, userReducer } from "../reducer/users.slice";
-import login from "../../../core/components/login/login";
 
 let mockRepo: UserApiRepo = {
   register: jest.fn(),
@@ -75,8 +74,6 @@ describe("Given the useUsers Hook", () => {
       const elements = await screen.findAllByRole("button");
       await fireEvent.click(elements[0]);
       expect(mockRepo.register).toHaveBeenCalled();
-      const state = userReducer(initialState, registerAction);
-      // expect(state).toBe(registerAction.payload);
     });
   });
 
