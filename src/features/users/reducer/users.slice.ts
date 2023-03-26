@@ -4,11 +4,13 @@ import { User } from "../models/user";
 export type State = {
   userLogged: User;
   users: User[];
+  token: string | null;
 };
 
 const initialState: State = {
   userLogged: {} as User,
   users: [],
+  token: null,
 };
 
 export const userSlice = createSlice({
@@ -21,9 +23,12 @@ export const userSlice = createSlice({
     login(state, action: PayloadAction<User>) {
       state.userLogged = action.payload;
     },
+    logout(state) {
+      state.users = [];
+    },
   },
 });
 
-export const { register, login } = userSlice.actions;
+export const { register, login, logout } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
