@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { store } from "../../store/store";
 import Login from "./login";
 
@@ -10,7 +11,9 @@ describe("Given the Login component", () => {
     // eslint-disable-next-line testing-library/no-render-in-setup
     render(
       <Provider store={store}>
-        <Login></Login>
+        <MemoryRouter>
+          <Login></Login>
+        </MemoryRouter>
       </Provider>
     );
 
