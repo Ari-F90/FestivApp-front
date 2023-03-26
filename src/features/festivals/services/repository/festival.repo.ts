@@ -18,6 +18,18 @@ export class FestivalApiRepo {
     const data = await resp.json();
     return data;
   }
+  async loadByMusic(
+    filter: Festival["musicType"]
+  ): Promise<FestivalServerResp> {
+    const url = this.url + "/musicType/" + filter;
+    const resp = await fetch(url);
+
+    if (!resp.ok)
+      throw new Error(`Error http: ${resp.status} ${resp.statusText}`);
+
+    const data = await resp.json();
+    return data;
+  }
 
   async loadOneFestival(id: Festival["id"]): Promise<FestivalServerResp> {
     const url = this.url + "/" + id;
