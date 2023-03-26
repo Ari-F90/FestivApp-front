@@ -39,7 +39,7 @@ export default function Register() {
           </div>
           <div>
             <input
-              className={styles.inputreegister}
+              className={styles.inputregister}
               type="password"
               name="password"
               id="password"
