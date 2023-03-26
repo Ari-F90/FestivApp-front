@@ -1,72 +1,64 @@
-# Week 9 - Proyecto final
+# Final project ISDI CODERS:
 
-Realiza una app fullstack MERN/MEAN con las siguientes características deseables:
+# Festival Marketplace App
 
-# Funcionalidad
+This is a full-stack application that allows users to create, update, and delete festivals on a marketplace platform.
 
-Listado de items
-Detalle de item (página aparte)
-Crear item (página aparte con un formulario e imagen obligatoria con un campo tipo file)
-Modificar item (mismo formulario que para crear)
-Borrar item (se tiene que poder borrar desde el listado)
-Paginación (puede ser el sistema clásico o un botón "Load more")
-Filtros (en el propio listado, que filtre sin cambiar de página)
-Login y registro de usuario
-Feedbacks al usuario
-Gestión de errores
-Firebase (o similar) para los archivos binarios (opcionalmente como backup)
+## Technologies Used
 
-# Requisitos Frontend:
+The app uses the following technologies:
 
-TypeScript
-React + gestión del estado con Redux / Angular
-moduleCSS / styled components
-tests unitarios / de componentes (opcionalmente snapshot)
-tests de integración
-README con información sobre la app
-100% coverage
-0 deuda técnica
-Lighthouse con métricas en verde
+- Front-end:
 
-# Requisitos Backend:
+  - React
+  - Redux
+  - Typescript
+  - SASS
 
-TypeScript
+- Back-end:
 
-Node + Express
+  - Node.js
+  - Express.js
+  - MongoDB
+  - Mongoose
+  - JWT
 
-auth con JWT
+## Getting started
 
-tests unitarios
+To run the app locally, follow these steps:
 
-tests de endpoints (supertest)
+- Clone this repository to your local machine.
+- Install the dependencies using npm install in both the root directory and the client directory.
+- Set up the environment variables by creating a .env file in the root directory and adding the following variables:
+  - MONGODB_URI - the URI for your MongoDB database.
+  - JWT_SECRET - a secret string to use for JWT authentication.
+- Start the app using npm start. This will start both the back-end server and the front-end development server.
 
-guardado de archivos binarios en disco duro / Firebase (o similar)
+## Functionality
 
-optimización de imágenes (sharp)
+The app allows users to:
 
-validación de requests con Joi
+- View a list of all festivals on the marketplace.
+- Create a new festival with a name, type of music, city, country, dates, capacity and the user's name who created it.
+- Edit an existing festival's details.
+- Delete a festival from the marketplace.
+- For the edit and delete actions, there are some user authorizations to allow these functions only to the creator user.
 
-README con información de uso y con endpoints (de cada endpoint método, url, body y response)
+All CRUD actions are performed via API calls to the back-end server.
 
-100% coverage
+## Future enhancements
 
-0 deuda técnica
+Some potential future enhancements to the app could include:
 
-Colección de endpoints de Postman exportada como JSON (en el root del proyecto)
+- Adding a search/filter feature to allow users to search for festivals by type of music.
+- Adding the ability for users to add their favorite festivals to their profile.
 
-# E2E:
+## Other interesting ans related links
 
-Proceso de login de usuario testado con Cypress
+- Figma: https://www.figma.com/file/wPPX3DpDS6TvigasW2bNVR/Untitled?node-id=0-1&t=ot77FgU900dFJjwt-0
+- Netlify:
+  https://ariadna-frias-final-project-front.netlify.app/
+- Sonar:
+  https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Ariadna-Frias-Final-Project-back-202301-mad
 
-# Check diario:
-
-daily meeting (qué tareas hice ayer, qué stoppers tuve, qué tareas haré hoy)
-informes de sonar sobre la rama principal, front y back
-= 80% cover
-
-# Challenge inicial
-
-Figma
-Responsabilidades de los componentes
-Rutas del backend
-Trello (backlog completo)
+  https://sonarcloud.io/summary/overall?id=isdi-coders-2023_Ariadna-Frias-Final-Project-front-202301-mad

@@ -18,7 +18,7 @@
   &__element {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
   &__image {
     height: 100%;
@@ -27,12 +27,10 @@
   &__properties {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    &__name {
-      align-self: flex-start;
-    }
-    &__dates {
-      align-self: flex-end;
-    }
+    justify-content: center;
+    gap: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
   }
 }

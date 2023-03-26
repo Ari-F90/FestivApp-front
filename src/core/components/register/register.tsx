@@ -29,6 +29,7 @@ export default function Register() {
         <div className={styles.formcontainer}>
           <div>
             <input
+              className={styles.inputregister}
               type="email"
               name="email"
               id="email"
@@ -38,6 +39,7 @@ export default function Register() {
           </div>
           <div>
             <input
+              className={styles.inputregister}
               type="password"
               name="password"
               id="password"
@@ -47,6 +49,7 @@ export default function Register() {
           </div>
           <div>
             <input
+              className={styles.inputregister}
               type="text"
               name="name"
               id="name"
@@ -56,6 +59,7 @@ export default function Register() {
           </div>
           <div>
             <input
+              className={styles.inputregister}
               type="text"
               name="surname"
               id="surname"

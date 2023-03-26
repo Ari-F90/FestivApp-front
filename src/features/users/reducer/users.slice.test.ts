@@ -10,6 +10,7 @@ const mockUser = {
 const initialState: State = {
   userLogged: {} as User,
   users: [],
+  user: {} as User,
 };
 
 describe("Given the userSlice", () => {
@@ -31,6 +32,16 @@ describe("Given the userSlice", () => {
       };
       const mockReducer = userReducer(initialState, loginAction);
       expect(mockReducer.userLogged).toBe(mockUser);
+    });
+  });
+  describe("When the logout method is called", () => {
+    test("Then it should return the mock", () => {
+      const logoutAction = {
+        type: "user/logout",
+        payload: "",
+      };
+      const mockReducer = userReducer(initialState, logoutAction);
+      expect(mockReducer.users).toEqual([]);
     });
   });
 });

@@ -27,6 +27,7 @@ export default function Login() {
         <div className={styles.formcontainer}>
           <div>
             <input
+              className={styles.inputlogin}
               type="email"
               name="email"
               id="email"
@@ -36,6 +37,7 @@ export default function Login() {
           </div>
           <div>
             <input
+              className={styles.inputlogin}
               type="password"
               name="password"
               id="password"

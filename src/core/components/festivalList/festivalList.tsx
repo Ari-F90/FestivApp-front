@@ -21,14 +21,12 @@ export function FestivalList() {
   return (
     <>
       <div className={styles.festivals_flex}>
-        <div></div>
-        <div>
+        <div className={styles.festivals_black}>
           <Link to={"/add"}>
-            <button>
+            <button className={styles.addbutton}>
               <span>
                 <img
-                  className={styles.addbutton}
-                  src="../../../../../../img/add.png"
+                  src="../../../../../../img/addbutton.png"
                   alt="addbutton"
                 ></img>
               </span>

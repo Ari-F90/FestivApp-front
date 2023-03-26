@@ -3,6 +3,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { act, render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import { Festival } from "../models/festival";
 import * as ac from "../reducer/festivals.actions.creator";
 import { festivalReducer } from "../reducer/festivals.reducer";
@@ -73,7 +74,9 @@ describe("Given the useFestivals hook", () => {
       render(
         <>
           <Provider store={mockStore}>
-            <TestComponent></TestComponent>
+            <MemoryRouter>
+              <TestComponent></TestComponent>
+            </MemoryRouter>
           </Provider>
         </>
       );
