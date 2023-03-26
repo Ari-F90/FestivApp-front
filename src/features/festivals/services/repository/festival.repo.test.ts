@@ -1,4 +1,5 @@
 import { Festival } from "../../models/festival";
+
 import { FestivalApiRepo } from "./festival.repo";
 
 const mockFestivalRepo = new FestivalApiRepo();
@@ -14,6 +15,21 @@ describe("Given the festival repo", () => {
       expect(mockFestivalRepo).toBeInstanceOf(FestivalApiRepo);
       const loadAll = await mockFestivalRepo.loadFestivals(2);
       expect(loadAll).toEqual([{ name: "festival" }]);
+    });
+  });
+
+  describe("When we call the loadByMusic method", () => {
+    test("Then it should return the values with the same music type", async () => {
+      global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
+        json: jest
+          .fn()
+          .mockResolvedValue([{ name: "festival", musicType: "indie" }]),
+      });
+
+      expect(mockFestivalRepo).toBeInstanceOf(FestivalApiRepo);
+      const loadByMusic = await mockFestivalRepo.loadByMusic("test");
+      expect(loadByMusic).toEqual([{ name: "festival", musicType: "indie" }]);
     });
   });
 
@@ -87,6 +103,14 @@ describe("Given the festival repo", () => {
       global.fetch = jest.fn().mockResolvedValue("Error found");
       const loadAll = mockFestivalRepo.loadFestivals(2);
       await expect(loadAll).rejects.toThrow();
+    });
+  });
+
+  describe("When loadByMusic method fails", () => {
+    test("Then it should throw an error", async () => {
+      global.fetch = jest.fn().mockResolvedValue("Error found");
+      const loadByMusic = mockFestivalRepo.loadByMusic("test");
+      await expect(loadByMusic).rejects.toThrow();
     });
   });
 

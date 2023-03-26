@@ -29,6 +29,7 @@
     margin-top: 2rem;
     gap: 1.5rem;
     background-color: black;
+
     &__registerhome {
       color: white;
       background-color: rgb(215, 51, 141);
@@ -39,6 +40,7 @@
       height: 2rem;
       font-family: "Nunito Sans", sans-serif;
       font-weight: bold;
+      cursor: pointer;
     }
     &__loginhome {
       color: white;
@@ -50,6 +52,7 @@
       height: 2rem;
       font-family: "Nunito Sans", sans-serif;
       font-weight: bold;
+      cursor: pointer;
     }
   }
 }

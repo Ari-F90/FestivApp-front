@@ -1,5 +1,6 @@
 import { useMemo, SyntheticEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
@@ -108,7 +109,11 @@ export default function Form() {
           required
           placeholder="Capacity"
         />
-        <button className={styles.buttonform} type="submit">
+        <button
+          className={styles.buttonform}
+          type="submit"
+          onClick={() => Swal.fire("Congrats! Changes have been saved!")}
+        >
           SAVE
         </button>
       </div>

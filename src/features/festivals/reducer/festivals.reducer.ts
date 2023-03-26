@@ -6,6 +6,7 @@ const initialState: Festival[] = [];
 
 export const festivalReducer = createReducer(initialState, (builder) => {
   builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
+  builder.addCase(ac.loadByMusicCreator, (_state, { payload }) => payload);
   builder.addCase(ac.loadOneCreator, (state, { payload }) => {
     return { ...state, payload };
   });
