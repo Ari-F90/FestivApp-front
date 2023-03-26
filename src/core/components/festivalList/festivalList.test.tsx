@@ -7,7 +7,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
-import { loadByMusicCreator } from "../../../features/festivals/reducer/festivals.actions.creator";
+
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 import { store } from "../../store/store";
 import { FestivalList } from "./festivalList";
