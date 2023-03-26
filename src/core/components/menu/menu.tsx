@@ -51,13 +51,11 @@ export const Menu = ({ options }: MenuProps) => {
             <div className={styles.container__flex}>
               <ul className={styles.menupaths}>
                 {options.map((item) => (
-                  <div>
-                    <li key={item.label}>
-                      <Link to={item.path} className="menu-item">
-                        {item.label}
-                      </Link>
-                    </li>
-                  </div>
+                  <li key={item.label}>
+                    <Link to={item.path} className="menu-item">
+                      {item.label}
+                    </Link>
+                  </li>
                 ))}
               </ul>
             </div>
