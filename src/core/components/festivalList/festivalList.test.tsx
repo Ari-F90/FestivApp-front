@@ -1,12 +1,13 @@
 /* eslint-disable testing-library/no-unnecessary-act */
 /* eslint-disable testing-library/no-render-in-setup */
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
+import { loadByMusicCreator } from "../../../features/festivals/reducer/festivals.actions.creator";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
 import { store } from "../../store/store";
 import { FestivalList } from "./festivalList";
@@ -68,6 +69,15 @@ describe("Given Festival List component", () => {
         expect(buttons[1]).toBeInTheDocument();
         await userEvent.click(buttons[2]);
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
+      });
+    });
+  });
+  describe("When the Festival list component appears in the screen", () => {
+    test("Then it should appear the festivals with the selected type of music", async () => {
+      await act(async () => {
+        const select = screen.getByRole("combobox");
+        fireEvent.change(select, { target: { value: "rock" } });
+        expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
       });
     });
   });
