@@ -19,14 +19,14 @@
   gap: 2.5rem;
 }
 
-input {
+.inputregister {
   background-color: rgb(102, 24, 67);
   height: 2rem;
   border: transparent;
   border-radius: 0.5rem;
   width: 10rem;
 }
-input::placeholder {
+.inputregister::placeholder {
   color: white;
   font-family: "Nunito Sans", sans-serif;
   padding-left: 1rem;
