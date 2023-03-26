@@ -50,7 +50,7 @@ All CRUD actions are performed via API calls to the back-end server.
 
 Some potential future enhancements to the app could include:
 
-- Adding a search/filter feature to allow users to search for festivals by type of music.
+- Improving the search/filter feature to allow users to search for festivals by dates or location.
 - Adding the ability for users to add their favorite festivals to their profile.
 
 ## Other interesting ans related links
