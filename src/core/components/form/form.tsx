@@ -4,7 +4,7 @@ import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
-
+import styles from "./form.module.scss";
 export default function Form() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -44,8 +44,8 @@ export default function Form() {
   };
 
   return (
-    <div>
-      <form action="" onSubmit={handleSubmit}>
+    <form action="" onSubmit={handleSubmit}>
+      <div className={styles.formcontainer}>
         <input
           type="text"
           name="name"
@@ -97,7 +97,7 @@ export default function Form() {
           placeholder="Capacity"
         />
         <button type="submit">SAVE</button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }
