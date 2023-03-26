@@ -4,4 +4,5 @@ export const festivalsActions = {
   add: "festivals@add",
   update: "festivals@update",
   delete: "festivals@delete",
+  filter: "festivals@filter",
 };

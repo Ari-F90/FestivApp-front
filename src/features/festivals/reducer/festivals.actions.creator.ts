@@ -3,6 +3,9 @@ import { Festival } from "../models/festival";
 import { festivalsActions } from "./festival.actions.types";
 
 export const loadCreator = createAction<Festival[]>(festivalsActions.load);
+export const loadByMusicCreator = createAction<Festival[]>(
+  festivalsActions.filter
+);
 export const loadOneCreator = createAction<Festival>(festivalsActions.loadOne);
 export const addCreator = createAction<Festival>(festivalsActions.add);
 export const updateCreator = createAction<Festival>(festivalsActions.update);
