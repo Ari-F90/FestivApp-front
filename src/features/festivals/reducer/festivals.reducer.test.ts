@@ -20,6 +20,22 @@ describe("Given the festivalReducer", () => {
     });
   });
 
+  describe("When the loadByMusic method is called", () => {
+    test("Then it should return the array of festivals with the selected type of music", () => {
+      const festivals: Festival[] = [
+        {
+          id: "1",
+          name: "Festival1",
+          city: "Barcelona",
+          musicType: "rock",
+        } as Festival,
+      ];
+      const action = ac.loadByMusicCreator(festivals);
+      const state = festivalReducer(initialState, action);
+      expect(state).toEqual(festivals);
+    });
+  });
+
   describe("When the loadOneCreator method is called", () => {
     test("Then it should return the festival", () => {
       const festival2: Festival = {
