@@ -4,6 +4,8 @@ import Swal from "sweetalert2";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
+import { useUsers } from "../../../features/users/hooks/use.users";
+import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 import styles from "./details.module.scss";
 
 export type CardProps = {
@@ -62,6 +64,7 @@ export default function Details() {
                     </button>
                   </Link>
                 </div>
+
                 <div
                   className={styles.deletecontainer}
                   onClick={() => {
