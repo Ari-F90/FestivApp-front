@@ -30,6 +30,7 @@ export function FestivalList() {
       <div className={styles.festivals_flex}>
         <div>
           <select
+            className={styles.festival_filter}
             onChange={async (element) => {
               const musicFiltered = element.target.value;
               musicFiltered === "All festivals"
