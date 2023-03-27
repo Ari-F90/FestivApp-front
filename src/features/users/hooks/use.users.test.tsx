@@ -30,12 +30,15 @@ let users;
 let initialState = {
   users: [{ email: "test@", name: "test1" }],
 } as unknown as State;
+
 const registerAction = register(mockUser);
 
 const mockStore = configureStore({
   reducer: { users: userReducer },
   preloadedState: {},
 });
+
+const mockDispatch = jest.fn();
 
 describe("Given the useUsers Hook", () => {
   beforeEach(async () => {
