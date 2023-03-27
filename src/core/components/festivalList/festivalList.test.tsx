@@ -58,8 +58,8 @@ describe("Given Festival List component", () => {
     test("Then it should appear the 'previous page' button", async () => {
       await act(async () => {
         const buttons = await screen.findAllByRole("button");
-        expect(buttons[1]).toBeInTheDocument();
-        await userEvent.click(buttons[1]);
+        expect(buttons[0]).toBeInTheDocument();
+        await userEvent.click(buttons[0]);
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
       });
     });
@@ -67,7 +67,7 @@ describe("Given Festival List component", () => {
       await act(async () => {
         const buttons = await screen.findAllByRole("button");
         expect(buttons[1]).toBeInTheDocument();
-        await userEvent.click(buttons[2]);
+        await userEvent.click(buttons[1]);
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
       });
     });
