@@ -1,7 +1,7 @@
 .formcontainer {
   display: flex;
   flex-direction: column;
-
+  color: white;
   justify-content: center;
   align-items: center;
   margin-top: 4rem;
@@ -14,11 +14,18 @@
   border: transparent;
   border-radius: 0.5rem;
   width: 10rem;
+  color: white;
+  padding-left: 1rem;
+  font-size: 1rem;
 }
 .inputform::placeholder {
   color: white;
   font-family: "Nunito Sans", sans-serif;
   padding-left: 1rem;
+  font-size: 1rem;
+}
+.input [type="text"] {
+  color: white;
 }
 .inputformfile {
   width: 8rem;
