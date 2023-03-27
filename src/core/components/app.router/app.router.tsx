@@ -35,10 +35,12 @@ export function AppRouter() {
           path={menuOptions[1].path}
           element={<AboutPage></AboutPage>}
         ></Route>
-        <Route
-          path={menuOptions[2].path}
-          element={<FestivalListPage></FestivalListPage>}
-        ></Route>
+        {
+          <Route
+            path={menuOptions[2].path}
+            element={<FestivalListPage></FestivalListPage>}
+          ></Route>
+        }
 
         <Route
           path={routesOptions[0].path}
