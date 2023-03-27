@@ -63,7 +63,6 @@ export default function Details() {
                     </button>
                   </Link>
                 </div>
-
                 <div
                   className={styles.deletecontainer}
                   onClick={() => {
