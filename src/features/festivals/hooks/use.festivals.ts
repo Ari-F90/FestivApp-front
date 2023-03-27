@@ -20,7 +20,6 @@ export function useFestivals(repo: FestivalApiRepo) {
         // console.error((error as Error).message);
       }
     },
-
     [dispatch, repo]
   );
 
