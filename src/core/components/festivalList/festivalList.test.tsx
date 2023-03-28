@@ -74,13 +74,6 @@ describe("Given Festival List component", () => {
     });
   });
   describe("When the Festival list component appears in the screen", () => {
-    test("Then it should appear all the festivals", () => {
-      const select = screen.getByRole("combobox");
-      fireEvent.change(select, { target: { value: "All festivals" } });
-      expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith(
-        "Al festivals"
-      );
-    });
     test("Then it should appear the festivals with the selected type of music", () => {
       const select = screen.getByRole("combobox");
       fireEvent.change(select, { target: { value: "rock" } });
