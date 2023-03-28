@@ -18,7 +18,6 @@ import { FestivalList } from "./festivalList";
 jest.mock("../../../features/festivals/hooks/use.festivals");
 jest.mock("../../../features/users/hooks/use.users");
 jest.mock("../card/card");
-let mockMail: string | undefined;
 
 const mockRepo = {
   url: "testing",
@@ -33,6 +32,7 @@ const mockRepo = {
 describe("Given Festival List component", () => {
   const mockLoadFestivals = jest.fn();
   const mockLoadByMusic = jest.fn();
+  let mockMail: string | undefined;
   beforeEach(() => {
     (useFestivals as jest.Mock).mockReturnValue({
       festivals: [
@@ -53,12 +53,10 @@ describe("Given Festival List component", () => {
 
     (useUsers as jest.Mock).mockReturnValue({
       users: {
-        userLogged: [
-          {
-            name: "test",
-            email: mockMail,
-          } as User,
-        ],
+        userLogged: {
+          name: "test",
+          email: "mockMail",
+        } as User,
       },
     });
 
@@ -94,6 +92,13 @@ describe("Given Festival List component", () => {
       const select = screen.getByRole("combobox");
       fireEvent.change(select, { target: { value: "rock" } });
       expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
+    });
+  });
+  describe("When the user is logged", () => {
+    test("Then it should appear the 'add button'", async () => {
+      mockMail = "test@";
+      const buttons = screen.getAllByRole("button");
+      expect(buttons.length).toBe(3);
     });
   });
 });
