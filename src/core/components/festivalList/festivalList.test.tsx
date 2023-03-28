@@ -24,8 +24,11 @@ const mockRepo = {
   deleteFestival: jest.fn(),
   loadByMusic: jest.fn(),
 } as unknown as FestivalApiRepo;
+
 describe("Given Festival List component", () => {
-  beforeEach(async () => {
+  const mockLoadFestivals = jest.fn();
+  const mockLoadByMusic = jest.fn();
+  beforeEach(() => {
     (useFestivals as jest.Mock).mockReturnValue({
       festivals: [
         {
@@ -39,19 +42,17 @@ describe("Given Festival List component", () => {
           musicType: "indie",
         } as Festival,
       ],
-      loadFestivals: jest.fn(),
-      loadByMusic: jest.fn(),
+      loadFestivals: mockLoadFestivals,
+      loadByMusic: mockLoadByMusic,
     });
 
-    await act(async () => {
-      render(
-        <Provider store={store}>
-          <MemoryRouter>
-            <FestivalList></FestivalList>
-          </MemoryRouter>
-        </Provider>
-      );
-    });
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <FestivalList></FestivalList>
+        </MemoryRouter>
+      </Provider>
+    );
   });
 
   describe("When the Festival list component is rendered", () => {
@@ -73,12 +74,17 @@ describe("Given Festival List component", () => {
     });
   });
   describe("When the Festival list component appears in the screen", () => {
-    test("Then it should appear the festivals with the selected type of music", async () => {
-      await act(async () => {
-        const select = screen.getByRole("combobox");
-        fireEvent.change(select, { target: { value: "rock" } });
-        expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
-      });
+    test("Then it should appear all the festivals", () => {
+      const select = screen.getByRole("combobox");
+      fireEvent.change(select, { target: { value: "All festivals" } });
+      expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith(
+        "Al festivals"
+      );
+    });
+    test("Then it should appear the festivals with the selected type of music", () => {
+      const select = screen.getByRole("combobox");
+      fireEvent.change(select, { target: { value: "rock" } });
+      expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
     });
   });
 });
