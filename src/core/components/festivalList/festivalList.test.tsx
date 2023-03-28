@@ -55,7 +55,7 @@ describe("Given Festival List component", () => {
       users: {
         userLogged: {
           name: "test",
-          email: "mockMail",
+          email: "",
         } as User,
       },
     });
