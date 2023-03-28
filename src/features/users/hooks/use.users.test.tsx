@@ -14,7 +14,7 @@ import userEvent from "@testing-library/user-event";
 jest.mock("../services/user.api.repo");
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as any),
-  useNavigate: () => ({ navigate: jest.fn().mockImplementation(() => ({})) }),
+  useNavigate: () => jest.fn().mockImplementation(() => ({})),
 }));
 
 let mockRepo: UserApiRepo;
