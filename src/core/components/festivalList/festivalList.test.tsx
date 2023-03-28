@@ -96,7 +96,6 @@ describe("Given Festival List component", () => {
   });
   describe("When the user is logged", () => {
     test("Then it should appear the 'add button'", async () => {
-      mockMail = "";
       const buttons = screen.getAllByRole("button");
       expect(buttons.length).toBe(3);
     });
