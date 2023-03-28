@@ -9,11 +9,16 @@ import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
+import { useUsers } from "../../../features/users/hooks/use.users";
+import { User } from "../../../features/users/models/user";
+
 import { store } from "../../store/store";
 import { FestivalList } from "./festivalList";
 
 jest.mock("../../../features/festivals/hooks/use.festivals");
+jest.mock("../../../features/users/hooks/use.users");
 jest.mock("../card/card");
+let mockMail: string | undefined;
 
 const mockRepo = {
   url: "testing",
@@ -44,6 +49,17 @@ describe("Given Festival List component", () => {
       ],
       loadFestivals: mockLoadFestivals,
       loadByMusic: mockLoadByMusic,
+    });
+
+    (useUsers as jest.Mock).mockReturnValue({
+      users: {
+        userLogged: [
+          {
+            name: "test",
+            email: mockMail,
+          } as User,
+        ],
+      },
     });
 
     render(
