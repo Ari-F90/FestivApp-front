@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
+import { useUsers } from "../../../features/users/hooks/use.users";
+import { UserApiRepo } from "../../../features/users/services/user.api.repo";
 
 import { Card } from "../card/card";
 import styles from "./festivalList.module.scss";
@@ -12,6 +14,11 @@ import styles from "./festivalList.module.scss";
 export function FestivalList() {
   const repo = useMemo(() => new FestivalApiRepo(), []);
   const { festivals, loadFestivals, loadByMusic } = useFestivals(repo);
+
+  const repoUser = useMemo(() => new UserApiRepo(), []);
+  const { users } = useUsers(repoUser);
+  const isLogging: boolean =
+    users.userLogged.email !== undefined ? true : false;
 
   useEffect(() => {
     loadFestivals();
@@ -23,33 +30,38 @@ export function FestivalList() {
       <div className={styles.festivals_flex}>
         <div>
           <select
+            className={styles.festival_filter}
             onChange={async (element) => {
               const musicFiltered = element.target.value;
-              musicFiltered === "All"
+              musicFiltered === "All festivals"
                 ? loadFestivals()
                 : loadByMusic(musicFiltered);
             }}
           >
-            <option value="All">All</option>
+            <option value="All festivals">All festivals</option>
             <option value="indie">Indie</option>
             <option value="rock">Rock</option>
-            <option value="heavy">Heavy metal</option>
+            <option value="heavy metal">Heavy metal</option>
             <option value="pop">Pop</option>
-            <option value="electronic">Pop</option>
+            <option value="electronic">Electronic</option>
           </select>
         </div>
-        <div className={styles.festivals_black}>
-          <Link to={"/add"}>
-            <button className={styles.addbutton}>
-              <span>
-                <img
-                  src="../../../../../../img/addbutton.png"
-                  alt="addbutton"
-                ></img>
-              </span>
-            </button>
-          </Link>
-        </div>
+        {isLogging ? (
+          <div className={styles.festivals_black}>
+            <Link to={"/add"}>
+              <button className={styles.addbutton}>
+                <span>
+                  <img
+                    src="../../../../../../img/addbutton.png"
+                    alt="addbutton"
+                  ></img>
+                </span>
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
 
       <div className={styles.festivals}>

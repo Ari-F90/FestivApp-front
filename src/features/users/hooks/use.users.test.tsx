@@ -7,38 +7,49 @@ import { useUsers } from "./use.users";
 import { UserApiRepo } from "../services/user.api.repo";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { configureStore } from "@reduxjs/toolkit";
-
+import { configureStore, Store } from "@reduxjs/toolkit";
 import { register, State, userReducer } from "../reducer/users.slice";
+import userEvent from "@testing-library/user-event";
 
-let mockRepo: UserApiRepo = {
-  register: jest.fn(),
-  login: jest.fn(),
-} as unknown as UserApiRepo;
-
+jest.mock("../services/user.api.repo");
 jest.mock("react-router-dom", () => ({
   ...(jest.requireActual("react-router-dom") as any),
-  useNavigate: () => ({ navigate: jest.fn().mockImplementation(() => ({})) }),
+  useNavigate: () => jest.fn().mockImplementation(() => ({})),
 }));
 
-let mockUser: User = {
-  username: "test",
+let mockRepo: UserApiRepo;
+let mockDispatch: jest.Mock;
+let initialState: State;
+
+let mockStore: Store;
+let mockUser = {
+  name: "test",
   email: "test@",
 } as unknown as User;
-
-let users;
-let initialState = {
-  users: [{ email: "test@", name: "test1" }],
-} as unknown as State;
-const registerAction = register(mockUser);
-
-const mockStore = configureStore({
-  reducer: { users: userReducer },
-  preloadedState: {},
-});
-
+let registerAction = register(mockUser);
+let spyDispatch: jest.SpyInstance;
 describe("Given the useUsers Hook", () => {
   beforeEach(async () => {
+    mockRepo = {
+      register: jest.fn().mockResolvedValue(mockUser),
+      login: jest.fn(),
+    } as unknown as UserApiRepo;
+
+    initialState = {
+      userLogged: {} as User,
+      users: [] as User[],
+    } as unknown as State;
+
+    mockStore = configureStore({
+      reducer: { users: userReducer },
+    });
+
+    mockDispatch = jest.fn().mockResolvedValue({
+      name: "test",
+      email: "test@",
+    });
+
+    spyDispatch = jest.spyOn(mockStore, "dispatch");
     const TestComponent = function () {
       const { registerUser, loginUser, logoutUser } = useUsers(mockRepo);
 
@@ -72,8 +83,14 @@ describe("Given the useUsers Hook", () => {
   describe("When the register button is clicked", () => {
     test("Then the registerUser function should be called", async () => {
       const elements = await screen.findAllByRole("button");
-      await fireEvent.click(elements[0]);
+      const state = userReducer(initialState, registerAction);
+      mockStore.dispatch = mockDispatch;
+      await userEvent.click(elements[0]);
       expect(mockRepo.register).toHaveBeenCalled();
+      expect(state).toStrictEqual({
+        userLogged: { email: "test@", name: "test" },
+        users: [{ email: "test@", name: "test" }],
+      });
     });
   });
 
@@ -88,6 +105,11 @@ describe("Given the useUsers Hook", () => {
     test("Then, the logoutUser function should be called", async () => {
       const elements = await screen.findAllByRole("button");
       await fireEvent.click(elements[2]);
+    });
+
+    test("Then, the logoutUser function should not be called if there are errors", async () => {
+      (mockRepo.login as jest.Mock).mockResolvedValue({});
+      expect(mockRepo.login).not.toBeCalled();
     });
   });
 });

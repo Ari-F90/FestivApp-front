@@ -9,10 +9,14 @@ import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { Festival } from "../../../features/festivals/models/festival";
 
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
+import { useUsers } from "../../../features/users/hooks/use.users";
+import { User } from "../../../features/users/models/user";
+
 import { store } from "../../store/store";
 import { FestivalList } from "./festivalList";
 
 jest.mock("../../../features/festivals/hooks/use.festivals");
+jest.mock("../../../features/users/hooks/use.users");
 jest.mock("../card/card");
 
 const mockRepo = {
@@ -24,8 +28,12 @@ const mockRepo = {
   deleteFestival: jest.fn(),
   loadByMusic: jest.fn(),
 } as unknown as FestivalApiRepo;
+
 describe("Given Festival List component", () => {
-  beforeEach(async () => {
+  const mockLoadFestivals = jest.fn();
+  const mockLoadByMusic = jest.fn();
+  let mockMail: string | undefined;
+  beforeEach(() => {
     (useFestivals as jest.Mock).mockReturnValue({
       festivals: [
         {
@@ -39,27 +47,34 @@ describe("Given Festival List component", () => {
           musicType: "indie",
         } as Festival,
       ],
-      loadFestivals: jest.fn(),
-      loadByMusic: jest.fn(),
+      loadFestivals: mockLoadFestivals,
+      loadByMusic: mockLoadByMusic,
     });
 
-    await act(async () => {
-      render(
-        <Provider store={store}>
-          <MemoryRouter>
-            <FestivalList></FestivalList>
-          </MemoryRouter>
-        </Provider>
-      );
+    (useUsers as jest.Mock).mockReturnValue({
+      users: {
+        userLogged: {
+          name: "test",
+          email: "",
+        } as User,
+      },
     });
+
+    render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <FestivalList></FestivalList>
+        </MemoryRouter>
+      </Provider>
+    );
   });
 
   describe("When the Festival list component is rendered", () => {
     test("Then it should appear the 'previous page' button", async () => {
       await act(async () => {
         const buttons = await screen.findAllByRole("button");
-        expect(buttons[1]).toBeInTheDocument();
-        await userEvent.click(buttons[1]);
+        expect(buttons[0]).toBeInTheDocument();
+        await userEvent.click(buttons[0]);
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
       });
     });
@@ -67,18 +82,22 @@ describe("Given Festival List component", () => {
       await act(async () => {
         const buttons = await screen.findAllByRole("button");
         expect(buttons[1]).toBeInTheDocument();
-        await userEvent.click(buttons[2]);
+        await userEvent.click(buttons[1]);
         expect(useFestivals(mockRepo).loadFestivals).toHaveBeenCalled();
       });
     });
   });
   describe("When the Festival list component appears in the screen", () => {
-    test("Then it should appear the festivals with the selected type of music", async () => {
-      await act(async () => {
-        const select = screen.getByRole("combobox");
-        fireEvent.change(select, { target: { value: "rock" } });
-        expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
-      });
+    test("Then it should appear the festivals with the selected type of music", () => {
+      const select = screen.getByRole("combobox");
+      fireEvent.change(select, { target: { value: "rock" } });
+      expect(useFestivals(mockRepo).loadByMusic).toHaveBeenCalledWith("rock");
+    });
+  });
+  describe("When the user is logged", () => {
+    test("Then it should appear the 'add button'", async () => {
+      const buttons = screen.getAllByRole("button");
+      expect(buttons.length).toBe(3);
     });
   });
 });

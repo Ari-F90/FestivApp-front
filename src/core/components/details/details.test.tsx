@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 /* eslint-disable testing-library/await-async-query */
 /* eslint-disable testing-library/no-render-in-setup */
 /* eslint-disable testing-library/no-unnecessary-act */
@@ -9,13 +10,14 @@ import { MemoryRouter } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
+import { useUsers } from "../../../features/users/hooks/use.users";
 
 import { store } from "../../store/store";
 
 import Details from "./details";
 
 jest.mock("../../../features/festivals/hooks/use.festivals");
-
+jest.mock("../../../features/users/hooks/use.users");
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({
@@ -56,6 +58,10 @@ describe("Given Details page component", () => {
       deleteFestival: jest.fn(),
     });
 
+    (useUsers as jest.Mock).mockReturnValue({
+      users: [{ name: "testUser", email: "test@" }],
+    });
+
     await act(async () => {
       render(
         <Provider store={store}>
@@ -77,7 +83,6 @@ describe("Given Details page component", () => {
     test("Then the selected festival will be deleted", async () => {
       const elements = screen.getAllByRole("button");
       await act(async () => await userEvent.click(elements[1]));
-
       expect(elements[1]).toBeInTheDocument();
       expect(useFestivals(mockRepo).deleteFestival).toHaveBeenCalled();
     });

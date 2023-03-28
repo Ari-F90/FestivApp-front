@@ -38,10 +38,12 @@ describe("When we use the login function", () => {
   test("Then it should log in an existing user and return a User object", async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: jest.fn().mockResolvedValue(mockUser),
+      json: jest.fn().mockResolvedValue({ token: "mockToken" }),
     });
-    await mockRepo.login(mockUser);
+    const result = await mockRepo.login(mockUser);
     expect(fetch).toHaveBeenCalled();
+    expect(result).toEqual({ token: "mockToken" });
+    expect(localStorage.getItem("token")).toBe("mockToken");
   });
 
   test("Then it should throw an error if the login request fails", async () => {
