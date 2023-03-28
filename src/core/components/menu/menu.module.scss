@@ -7,18 +7,29 @@
 
 .menuburger:hover {
   cursor: pointer;
+
   .menupaths {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    align-content: center;
+    justify-content: center;
     color: white;
     font-weight: bold;
     list-style: none;
-    width: 5rem;
+    width: 10rem;
+    height: 10rem;
     margin-top: 1rem;
     margin-right: 1rem;
   }
 }
 a:link {
   text-decoration: none;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+a {
+  color: white;
 }
 .burgerImg {
   width: 1.6rem;
