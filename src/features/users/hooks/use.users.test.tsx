@@ -20,7 +20,7 @@ jest.mock("react-router-dom", () => ({
 let mockRepo: UserApiRepo;
 let mockDispatch: jest.Mock;
 let initialState: State;
-//let registerAction: "user/register";
+
 let mockStore: Store;
 let mockUser = {
   name: "test",
@@ -39,8 +39,6 @@ describe("Given the useUsers Hook", () => {
       userLogged: {} as User,
       users: [] as User[],
     } as unknown as State;
-
-    //const loginAction = login(mockUser)
 
     mockStore = configureStore({
       reducer: { users: userReducer },
@@ -107,6 +105,11 @@ describe("Given the useUsers Hook", () => {
     test("Then, the logoutUser function should be called", async () => {
       const elements = await screen.findAllByRole("button");
       await fireEvent.click(elements[2]);
+    });
+
+    test("Then, the logoutUser function should not be called if there are errors", async () => {
+      (mockRepo.login as jest.Mock).mockResolvedValue({});
+      expect(mockRepo.login).not.toBeCalled();
     });
   });
 });
