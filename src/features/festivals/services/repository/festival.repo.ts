@@ -4,7 +4,7 @@ export class FestivalApiRepo {
   url: string;
   actualPage: number;
   constructor() {
-    this.url = "https://final-project-festivapp.onrender.com/festivals";
+    this.url = "http://localhost:5000/festivals";
     this.actualPage = 1;
   }
   async loadFestivals(pageChange: number): Promise<FestivalServerResp> {
