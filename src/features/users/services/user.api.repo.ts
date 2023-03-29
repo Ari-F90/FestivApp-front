@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { ServerResp, User } from "../models/user";
 
 export class UserApiRepo {
@@ -14,6 +15,7 @@ export class UserApiRepo {
         "Content-type": "application/json",
       },
     });
+    Swal.fire("User correctly registered!");
     if (!resp.ok)
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
     const data = await resp.json();
@@ -28,10 +30,12 @@ export class UserApiRepo {
         "Content-type": "application/json",
       },
     });
-    if (!resp.ok)
+    Swal.fire("Successful logging!");
+    if (!resp.ok) {
+      Swal.fire("Sorry, incorrect data");
       throw new Error("Error Http: " + resp.status + ". " + resp.statusText);
+    }
     const data = await resp.json();
-
     if (data.token) JSON.stringify(localStorage.setItem("token", data.token));
     return data;
   }
