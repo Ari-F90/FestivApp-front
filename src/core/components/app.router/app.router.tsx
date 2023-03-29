@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { MenuOption, menuOptions } from "../menu/menu";
+import ErrorFormPage from "../pages/error-page/error-page";
 
 const HomePage = lazy(() => import("../pages/home-page/home-page"));
 const AboutPage = lazy(() => import("../pages/about-page/about-page"));
@@ -62,6 +63,7 @@ export function AppRouter() {
           path={routesOptions[4].path}
           element={<EditFormPage></EditFormPage>}
         ></Route>
+        <Route path={"*"} element={<ErrorFormPage></ErrorFormPage>}></Route>
       </Routes>
     </Suspense>
   );
