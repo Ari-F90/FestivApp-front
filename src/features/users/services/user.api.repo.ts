@@ -4,7 +4,7 @@ import { ServerResp, User } from "../models/user";
 export class UserApiRepo {
   url: string;
   constructor() {
-    this.url = "https://final-project-festivapp.onrender.com/users";
+    this.url = "http://localhost:5000/users";
   }
 
   async register(user: Partial<User>): Promise<ServerResp> {
