@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 12rem);
   grid-auto-rows: 15rem;
-  grid-gap: 2rem;
+  grid-gap: 1.5rem;
   justify-content: center;
   align-content: center;
-  margin-top: 0.8rem;
+
+  padding-bottom: 0.8rem;
   @media screen and (min-width: 400px) {
     grid-gap: 10rem;
     margin-top: 5rem;
@@ -36,8 +37,9 @@
 .containerbuttons {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 0.8rem;
+  gap: 1.6rem;
+  padding-top: 1rem;
+  margin-bottom: 1rem;
   @media screen and (min-width: 400px) {
     margin-top: 5rem;
   }
@@ -66,8 +68,9 @@ img {
   margin-right: 5rem;
   width: 10rem;
   height: 1.5rem;
-  background-color: transparent;
+  background-color: rgb(43, 41, 41);
   color: white;
   border-radius: 2rem;
   text-align: center;
+  margin-bottom: 2rem;
 }

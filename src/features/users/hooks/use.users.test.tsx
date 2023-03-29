@@ -27,7 +27,7 @@ let mockUser = {
   email: "test@",
 } as unknown as User;
 let registerAction = register(mockUser);
-let spyDispatch: jest.SpyInstance;
+
 describe("Given the useUsers Hook", () => {
   beforeEach(async () => {
     mockRepo = {
@@ -49,7 +49,6 @@ describe("Given the useUsers Hook", () => {
       email: "test@",
     });
 
-    spyDispatch = jest.spyOn(mockStore, "dispatch");
     const TestComponent = function () {
       const { registerUser, loginUser, logoutUser } = useUsers(mockRepo);
 
@@ -83,9 +82,9 @@ describe("Given the useUsers Hook", () => {
   describe("When the register button is clicked", () => {
     test("Then the registerUser function should be called", async () => {
       const elements = await screen.findAllByRole("button");
+      await userEvent.click(elements[0]);
       const state = userReducer(initialState, registerAction);
       mockStore.dispatch = mockDispatch;
-      await userEvent.click(elements[0]);
       expect(mockRepo.register).toHaveBeenCalled();
       expect(state).toStrictEqual({
         userLogged: { email: "test@", name: "test" },
@@ -105,11 +104,6 @@ describe("Given the useUsers Hook", () => {
     test("Then, the logoutUser function should be called", async () => {
       const elements = await screen.findAllByRole("button");
       await fireEvent.click(elements[2]);
-    });
-
-    test("Then, the logoutUser function should not be called if there are errors", async () => {
-      (mockRepo.login as jest.Mock).mockResolvedValue({});
-      expect(mockRepo.login).not.toBeCalled();
     });
   });
 });

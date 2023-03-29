@@ -35,7 +35,7 @@ export default function Details() {
                 className={styles.details__image}
               />
             </div>
-            <ul className={styles.card__details}>
+            <div className={styles.card__details}>
               <div className={styles.card__subtitle}>
                 <div>
                   <span className={styles.card__name}>
@@ -83,7 +83,7 @@ export default function Details() {
                   </Link>
                 </div>
               </div>
-            </ul>
+            </div>
           </div>
         </div>
 

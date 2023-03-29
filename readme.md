@@ -32,7 +32,8 @@ To run the app locally, follow these steps:
 - Set up the environment variables by creating a .env file in the root directory and adding the following variables:
   - MONGODB_URI - the URI for your MongoDB database.
   - JWT_SECRET - a secret string to use for JWT authentication.
-- Start the app using npm start. This will start both the back-end server and the front-end development server.
+- Run the command "npm install" to install all the required dependencies.
+- Start the app using "npm start". This will start both the back-end server and the front-end development server.
 
 ## Functionality
 
@@ -53,7 +54,46 @@ Some potential future enhancements to the app could include:
 - Improving the search/filter feature to allow users to search for festivals by dates or location.
 - Adding the ability for users to add their favorite festivals to their profile.
 
-## Other interesting ans related links
+## Endpoints
+
+### USERS:
+
+GET ➡️ .../users
+
+- Get all the data of all the registered users.
+
+POST ➡️ .../users/register
+
+- Register a user. The required fields will be the name, surname, email and password.
+
+POST ➡️ .../users/login
+
+- Login with an existing user. The required fields will be the email and password.
+
+### FESTIVALS:
+
+GET ➡️ .../festivals
+
+- Get all the data of the festivals (name, image, type of music, city, country, dates, capacity and the user who has created it).
+
+GET ➡️ .../musicType/:musicTypeFilter
+
+- Get all the festivals with the same type of music filtered.
+
+POST ➡️ .../festivals
+
+- Create a festival with all the data required.
+
+PATCH ➡️ .../festivals/edit/:id
+
+- Edit a festival.
+  This action can only be done by its creator.
+
+DEL ➡️ .../festivals/:id
+
+- Delete a note. This action can only be done by its creator.
+
+## Other interesting and related links
 
 - Figma: https://www.figma.com/file/wPPX3DpDS6TvigasW2bNVR/Untitled?node-id=0-1&t=ot77FgU900dFJjwt-0
 - Netlify:
