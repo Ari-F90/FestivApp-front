@@ -10,14 +10,13 @@ import { MemoryRouter } from "react-router-dom";
 
 import { useFestivals } from "../../../features/festivals/hooks/use.festivals";
 import { FestivalApiRepo } from "../../../features/festivals/services/repository/festival.repo";
-import { useUsers } from "../../../features/users/hooks/use.users";
 
 import { store } from "../../store/store";
 
 import Details from "./details";
 
 jest.mock("../../../features/festivals/hooks/use.festivals");
-jest.mock("../../../features/users/hooks/use.users");
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: () => ({
@@ -33,7 +32,7 @@ const mockRepo = {
   deleteFestival: jest.fn(),
 } as unknown as FestivalApiRepo;
 
-const mockParams = { id: "3" };
+const mockParams = { id: "1" };
 describe("Given Details page component", () => {
   beforeEach(async () => {
     (useFestivals as jest.Mock).mockReturnValue({
@@ -56,10 +55,6 @@ describe("Given Details page component", () => {
       ],
       loadOneFestival: jest.fn(),
       deleteFestival: jest.fn(),
-    });
-
-    (useUsers as jest.Mock).mockReturnValue({
-      users: [{ name: "testUser", email: "test@" }],
     });
 
     await act(async () => {

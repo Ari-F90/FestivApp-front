@@ -17,7 +17,7 @@ export function useFestivals(repo: FestivalApiRepo) {
         const data = await repo.loadFestivals(pageChange);
         dispatch(ac.loadCreator(data.results));
       } catch (error) {
-        // console.error((error as Error).message);
+        console.error((error as Error).message);
       }
     },
     [dispatch, repo]
@@ -73,7 +73,7 @@ export function useFestivals(repo: FestivalApiRepo) {
       await repo.deleteFestival(id);
       dispatch(ac.deleteCreator(id));
     } catch (error) {
-      //Console.error((error as Error).message);
+      console.error((error as Error).message);
     }
   };
 
