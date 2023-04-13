@@ -17,7 +17,7 @@ export function useUsers(repo: UserApiRepo) {
   const registerUser = async (info: Partial<User>) => {
     try {
       const newUser = await repo.register(info);
-      navigate("/festivals");
+      navigate("/login-page");
       dispatch(register(newUser.results[0]));
     } catch (error) {
       console.error((error as Error).message);
